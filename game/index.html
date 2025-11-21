@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mixim Game</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&text=delete,content_copy" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+</head>
+<body>
+    <div id="page-container">  
+    <div id="menu-bar">
+        <div id="progress-counter">1/3</div>
+        <div id="timer">3:45</div>
+    </div>
+
+    <div id="title">
+        <div id="mixim1" class="letter-block-filled">M</div>
+        <div id="mixim2" class="letter-block-filled">I</div>
+        <div id="mixim3" class="letter-block-filled">X</div>
+        <div id="mixim4" class="letter-block-filled">I</div>
+        <div id="mixim5" class="letter-block-filled">M</div>
+    </div><!-- end title -->
+
+    <div id="main" class="window">
+        <p class="center">You've been invited to play a Mixim!</p>
+        <p class="center">The topic is:</p>
+        <p id="topic-container" class="center big-text">Organic Chemistry</p>
+        <p class="center">There are:</p>
+        <p id="question-number" class="center big-text">5 Questions</p>
+        <div class="button-row">
+        <button id="start-game" class="link-button">Start Game</button>
+        </div><!-- end button row -->
+        <div class="highlight-container">You can <a id="remix-link" target="_blank">Remix</a> this game to make your own version.</div>
+    </div>
+
+    <div id="subtitle">Drag the scrambled letter boxes into the correct order.</div>
+    
+    <div id="gameplay-container">
+        <div id="scrambled-container" class="letter-block-container">
+        <div class="letter-block-filled" draggable="true">H</div>
+        <div class="letter-block-filled" draggable="true">E</div>
+        <div class="letter-block-filled" draggable="true">L</div>
+        <div class="letter-block-filled" draggable="true">L</div>
+        <div class="letter-block-filled" draggable="true">O</div>
+        </div>
+
+        <div id="unscrambled-container" class="letter-block-container">
+        <div class="letter-block-empty"></div>
+        <div class="letter-block-empty"></div>
+        <div class="letter-block-empty"></div>
+        <div class="letter-block-empty"></div>
+        <div class="letter-block-empty"></div>
+        </div>
+
+        <div id="description-container" class="window">Here is some definition</div>
+
+        <div class="button-row">
+        <button id="next" class="link-button">Check Answer</button>
+        </div><!-- end button row -->
+    </div><!--  end gameplay container -->
+    <div id="modal"></div>
+    </div><!-- end page container -->
+    <script src="/common.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

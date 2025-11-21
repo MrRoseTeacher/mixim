@@ -1,0 +1,244 @@
+/* CODE FOR READING THE QUERY PARAMETER
+//creates a key/value pair of the parameters
+const urlParams = new URLSearchParams(window.location.search);
+//access the 'data'
+const encoded = urlParams.get('data');
+//decode the URI (url safe) encoding
+const clean = decodeURIComponent(encoded);
+//decode the base64 encoding
+const decoded = atob(clean);
+
+console.log(decoded);
+*/
+
+const decoded = "topic=Words+that+English+borrowed+from+Indigenous+Language&word1=sound&desc1=A+noise+made&word2=Light&desc2=What+your+eyes+see&word3=Touch&desc3=What+you+feel+with+your+fingers&successMsg=Congratulations+on+finishing+the+game!";
+const scrambledWords = [];
+const unscrambledWords = [];
+const descriptions = [];
+let topic = "";
+let successMsg = "";
+let totalQuestions = 1;
+let currentQuestion = 0;
+let currentDrag;
+let currentDragParent;
+const builderURL = "https://codepen.io/tv58777/pen/VYapgWN";
+const remixLink = builderURL + window.location.search;
+let gameContainerVisible = false;
+
+//function must split up the String, replace + with " ", separate the words into an array (maybe keep the original as well?)
+function parseContent(text){
+  const raw = text.split("&");
+  for(let i=0; i<raw.length; i++){
+    //trim out things like topic= and remove + with " "
+    raw[i] = raw[i].replaceAll("+", " ");
+    
+    let begin = raw[i].indexOf("=") + 1;
+    raw[i] = raw[i].substring(begin);
+    
+    if(i == 0){
+      topic = raw[i];
+    }
+    else if(i == raw.length -1){
+      successMsg = raw[i];
+    }
+    else if(i % 2 == 1){
+      unscrambledWords.push(raw[i].toUpperCase());
+    }
+    else{
+      descriptions.push(raw[i]);
+    }
+  }
+  
+  //now scramble all of the words and put them in the scrambled array
+  for(let i=0; i<unscrambledWords.length; i++){
+    //turn each word into an array and send to scramble function
+    let scrambled = scramble(unscrambledWords[i].split(""));
+    //make scrambled word a String and push it to the scrambled array
+    scrambledWords.push(scrambled.join(""));
+  }
+  
+  totalQuestions = scrambledWords.length;
+}
+
+function scramble(ar){
+  //scrambles the array based on Fisher-Yates
+  for(let i = 0; i < ar.length; i++){
+    const rnd = Math.ceil(Math.random()*(ar.length-1));
+    const temp = ar[i];
+    ar[i] = ar[rnd];
+    ar[rnd] = temp;
+  }
+  return ar;
+}
+
+//displays scrambled word. Creates letterboxes, and calculates needed width.
+function nextWord(n){
+  if(n >= totalQuestions){
+    console.log(successMsg);
+  }
+  else{
+    eid("description-container").innerHTML = descriptions[n];
+    eid("scrambled-container").innerHTML = "";
+    eid("unscrambled-container").innerHTML = "";
+    for(let i=0; i<scrambledWords[n].length; i++){
+      eid("scrambled-container").append(createLetterBlock(scrambledWords[n][i]));
+      eid("unscrambled-container").append(createEmptyLetterBlock());
+    }
+    // currentQuestion++;
+  }
+}
+
+function createLetterBlock(letter){
+  const node = document.createElement("div");
+  node.classList.add("letter-block-filled");
+  node.draggable = true;
+  //add dragstart and touchstart
+  node.ondragstart = dragStartHandler;
+  node.innerHTML = letter;
+  return node;
+}
+
+function createEmptyLetterBlock(){
+  const node = document.createElement("div");
+  node.classList.add("letter-block-empty");
+  //add drag and touch handlers
+  node.ondragover = dragoverHandler;
+  node.ondrop = dropHandler;
+  return node;
+}
+
+function checkWord(n){
+  let passed = true;
+  const correctWord = unscrambledWords[n];
+  const guessArray = eid("unscrambled-container").getElementsByClassName("letter-block-empty");
+  const lettersFilledArray = eid("unscrambled-container").getElementsByClassName("letter-block-filled");
+  const lettersFilled = lettersFilledArray.length;
+  
+  //clear any previous correct or incorrect classes
+  for(let i=0; i<lettersFilled; i++){
+    if(lettersFilledArray[i].classList.contains("correct")){
+      lettersFilledArray[i].classList.remove("correct");
+    }
+    if(lettersFilledArray[i].classList.contains("incorrect")){
+      lettersFilledArray[i].classList.remove("incorrect");
+    }
+  }
+  //start check. Check if there are empties first
+  if(correctWord.length > lettersFilled){
+    showModal("You must first use all of the letters", 2000);
+    return;
+  }
+  for(let i=0; i< guessArray.length; i++){
+    const currentBlock = guessArray[i].firstChild;
+    if(currentBlock.innerHTML == correctWord[i]){
+      currentBlock.classList.add("correct");
+      currentBlock.classList.add("correct-animation");
+    }
+    else{
+      currentBlock.classList.add("incorrect");
+      currentBlock.classList.add("incorrect-animation");
+      passed = false;
+    }
+  }
+  if(passed){
+    eid("next").innerHTML = "Next Question";
+    currentQuestion++;
+  }
+  
+  //clear animations
+  setTimeout(function(){
+    for(let i=0; i<lettersFilled; i++){
+      if(lettersFilledArray[i].classList.contains("correct-animation")){
+        lettersFilledArray[i].classList.remove("correct-animation");
+      }
+      if(lettersFilledArray[i].classList.contains("incorrect-animation")){
+        lettersFilledArray[i].classList.remove("incorrect-animation");
+      }
+    }
+  }, 300);
+}
+
+function dragStartHandler(e){
+  currentDrag = e.target;
+  if(e.target.parentNode != eid("scrambled-container")){
+    currentDragParent = e.target.parentNode;
+  }
+}
+
+function dragoverHandler(e){
+  e.preventDefault();
+}
+
+function dropHandler(e){
+  e.preventDefault();
+  if(e.target.firstChild){
+    //element is occupied by a current draggable object
+    let newTarget = e.target.parentNode;
+    currentDragParent.append(e.target);
+    newTarget.append(currentDrag);
+  }
+  else{
+    e.target.append(currentDrag);
+  }
+  currentDrag = null;
+  currentDragParent = null;
+}
+
+eid("next").onclick = function(){
+  if(this.innerHTML != "Next Question"){
+    checkWord(currentQuestion);
+  }
+  else{
+    nextWord(currentQuestion);
+    this.innerHTML = "Check Answer";
+  }
+}
+
+function toggleGameContainer(){
+  if(!gameContainerVisible){
+    // setTimeout(function(){
+    eid("gameplay-container").style.visibility = "visible";
+    eid("gameplay-container").style.opacity = 1;
+    if(!eid("gameplay-container").classList.contains("move-body-up")){
+      eid("gameplay-container").classList.add("move-body-up");
+    }      
+    // }, 300);
+    gameContainerVisible = !gameContainerVisible;
+  }
+  else{
+    eid("gameplay-container").style.opacity = 0;
+    setTimeout(function(){
+      eid("gameplay-container").style.visibility = "hidden";
+    }, 300);
+    gameContainerVisible = !gameContainerVisible;
+  }
+}
+
+eid("start-game").onclick = function(){
+  //hide main
+  eid("main").style.opacity = 0;
+  setTimeout(function(){
+    console.log(eid("main").style.opacity);
+    eid("main").style.display = "none";
+    eid("menu-bar").style.visibility = "visible";
+    eid("menu-bar").style.opacity = 1;
+    eid("subtitle").style.visibility = "visible";
+    eid("subtitle").classList.add("move-body-up");
+    toggleGameContainer();
+  }, 300);
+}
+
+eid("remix-link").href = remixLink;
+parseContent(decoded);
+nextWord(0);
+
+//use a modal for the success message and disable the buttons
+//make modal
+//update progress counter
+//make timer
+//figure out ending timing
+//Configure play screen
+//add touch, Safari drag events
+//add a page container to this and the builder page
+//make the button do a CSS flip?
+//Remix button

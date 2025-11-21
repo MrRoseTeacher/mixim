@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mixim Builder</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&text=delete,content_copy" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+</head>
+<body>
+    <div id="page-container">  
+        <div id="title">
+            <div id="mixim1" class="letter-block-filled">M</div>
+            <div id="mixim2" class="letter-block-filled">I</div>
+            <div id="mixim3" class="letter-block-filled">X</div>
+            <div id="mixim4" class="letter-block-filled">I</div>
+            <div id="mixim5" class="letter-block-filled">M</div>
+        </div><!-- end title -->
+        
+        <div id="main" class="window">
+            <div class="button-row">
+            <button class="link-button" id="download-sample">Download Sample</button>
+            <button class="link-button" id="upload">Upload JSON File</button>      
+            </div><!-- end button-row-->
+            
+            <div class="content-col">
+            Topic
+            <input class="mixim-input">
+            </div><!-- end content col -->
+            
+            <div class="content-row">
+            <div class="content-col">
+                Word
+                <input class="mixim-input">
+            </div><!-- end content col -->
+            <div class="content-col">
+                Description/Definition
+                <input class="mixim-input">
+            </div><!-- end content col -->
+            <button class="delete-row"><span class="material-symbols-outlined">
+        delete
+        </span></button>
+            </div><!-- end content row -->
+            
+            <div class="button-row">
+            <button id="add-row" class="link-button">Add Row</button>
+            </div><!-- end button row -->
+
+            <div class="content-col">
+            Success Message
+            <input class="mixim-input">
+            </div><!-- end content col -->
+            
+            <div class="button-row">
+            <button id="gen-mixim" class="link-button">Generate Mixim Game Link</button>
+            </div><!-- end button row -->
+            
+            <div id="mixim-link"><button id="copy-link"><span class="material-symbols-outlined">
+        content_copy
+        </span></button></div>
+            
+        </div><!-- end main -->
+        
+        <div id="modal"></div>
+    </div><!-- end page container -->
+    <script src="/common.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

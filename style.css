@@ -1,0 +1,453 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+/* Builder and General CSS */
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 250,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+:root{
+  --extraLightBG: #FEFEFE;
+  --lightBG: #FAFAFA;
+  --lightGrey: #E6E6E6;
+  --medLightGrey: #C2C2C2;
+  --medGrey: #8A8A8A;
+  --darkGrey: #3B3B3B;
+  --text: #242424;
+  --animationTime: 1.5s;
+  --animationTimeBodyUp: 0.5s;
+  --animationDelay: 1s;
+  --correct: #00A100;
+  --incorrect: #bc2929;
+  --accent: #4166f5;
+  --opacityDuration: 0.5s;
+}
+
+*{
+  box-sizing: border-box;
+  font-family: "Quicksand";
+}
+
+body{
+  background: var(--lightBG);
+}
+
+a{
+  text-decoration: none;
+  color: var(--medGrey);
+}
+
+a:visited{
+  color: var(--medGrey);
+}
+
+/* Builder Page Styles */
+
+#page-container{
+  max-width: 75rem;
+  margin: 0 auto;
+}
+
+.content-row, .content-col, .button-row{
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin: 1rem 0;
+  position: relative;
+}
+
+.content-row .content-col:first-child{
+  width:30%;
+  flex-shrink: 0;
+}
+
+.content-row .content-col:nth-child(2){
+  max-width: 70%;
+}
+
+.content-col{
+  flex-direction: column;
+  width: 100%;
+}
+
+.content-col input{
+  width: 100%;
+  height: 2rem;
+}
+
+.window{
+  width: 90%;
+  margin: 0 auto;
+  padding: 2rem;
+  background: var(--extraLightBG);
+  box-shadow: -10px 0px 10px -6px var(--medLightGrey), 10px 0px 10px -6px var(--medLightGrey);
+  transition: opacity var(--opacityDuration) ease-in-out;
+}
+
+#main{
+  position: relative;
+  border-radius: 3px;
+  top: -7rem;
+  opacity: 0;
+  animation: move-main-up calc(var(--animationTime) + 1s) ease-in-out forwards calc(var(--animationDelay) + 0s);
+}
+
+.link-button{
+  background: var(--darkGrey);
+  color: var(--lightGrey);
+  border: none;
+  padding: 0.8rem;
+  border-radius: 3px;
+  font-weight: 500;
+}
+
+.delete-row{
+  display: block;
+  height: 2rem;
+  margin-top: 2.9rem;
+  margin-bottom: 1.1rem;
+  background: var(--extraLightBG);
+  font-size: 2rem;
+  border: none;
+  color: var(--incorrect);
+}
+
+button:hover{
+  cursor: pointer;
+}
+
+button:active{
+  background: var(--text);
+}
+
+#gen-mixim{
+  margin-top: 1rem;
+}
+
+#title {
+  position: relative;
+  width: 20rem;
+  height: 20rem;
+  border-radius: 50%; 
+  margin: 3rem auto;
+  animation: move-title-up calc(var(--animationTime) + 1s) ease-in-out forwards calc(var(--animationDelay) + 0s);
+}
+
+#mixim-link{
+  min-height: 2rem;
+  line-height: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  position: relative;
+  visibility: hidden;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+#copy-link{
+  position: relative;
+  border: none;
+  color: var(--accent);
+  background: var(--extraLightBG);
+  top: 0.4rem;
+}
+
+#mixim1, #mixim2, #mixim3, #mixim4, #mixim5{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -2rem; 
+  margin-left: -2rem; 
+}
+
+.letter-block-filled, .letter-block-empty {
+  Width: 3rem;
+  height: 3rem;
+  line-height: 3rem;
+  font-size: 1.2rem;
+  color: var(--text);
+  font-weight: 500;
+  border: 2px solid var(--medGrey);
+  border-radius: 3px;
+  background: var(--extraLightBG);
+  text-align:center;
+  transition: border 0.2s ease-in-out;
+}
+
+.letter-block-filled{
+  box-shadow: 0px 9px 13px -7px var(--medGrey)
+}
+
+.letter-block-empty{
+  border: 2px solid var(--lightGrey);
+}
+
+#modal{
+  position: fixed;
+  top: 5rem;
+  width: 30rem;
+  left: calc((100vw - 30rem) / 2);
+  padding: 2rem;
+  background: var(--lightBG);
+  border: 2px solid var(--darkGrey);
+  text-align: center;
+  border-radius: 3px;
+  box-shadow: 0px 10px 10px -6px var(--medLightGrey), 0px -10px 10px -6px var(--medLightGrey), -10px 0px 10px -6px var(--medLightGrey), 10px 0px 10px -6px var(--medLightGrey);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--opacityDuration) ease-in-out;
+}
+
+/* Title Animations */
+
+#mixim1{
+  animation: under-circle1 calc(var(--animationTime) - 0s) linear forwards var(--animationDelay);
+  transform: translateX(-10rem);
+}
+
+#mixim2{
+  animation: over-circle2 calc(var(--animationTime) - 0s) linear forwards var(--animationDelay);
+  transform: translateX(-5rem);
+}
+
+#mixim3{
+  animation: stay-still calc(var(--animationTime) - 0s) linear forwards var(--animationDelay);
+}
+
+#mixim4{
+  animation: under-circle2 calc(var(--animationTime) - 0s) linear forwards var(--animationDelay);
+  transform: translateX(5rem);
+}
+
+#mixim5{
+  animation: over-circle1 var(--animationTime) linear forwards var(--animationDelay);
+  transform: translateX(10rem);
+}
+
+/* Might try applying the animation using JS onload. Boxes don't finish at the same place */
+
+@keyframes under-circle1 {
+  0% {
+    transform: rotate(0deg) translateX(-10rem) rotate(0deg);
+    border: 2px solid var(--medGrey);
+  }
+  90% {
+    transform: rotate(-180deg) translateX(-10rem) rotate(180deg);
+    border: 2px solid var(--medGrey);
+  }
+  100% {
+    transform: rotate(-180deg) translateX(-10rem) rotate(180deg);
+    border: 2px solid var(--correct);
+  }
+}
+
+@keyframes under-circle2 {
+  0% {
+    transform: rotate(0deg) translateX(5rem) rotate(0deg);
+    border: 2px solid var(--medGrey);
+  }
+  90% {
+    transform: rotate(180deg) translateX(5rem) rotate(-180deg);
+    border: 2px solid var(--medGrey);
+  }
+  100% {
+    transform: rotate(180deg) translateX(5rem) rotate(-180deg);
+    border: 2px solid var(--correct);
+  }
+}
+
+@keyframes over-circle1 {
+  0% {
+    transform: rotate(0deg) translateX(10rem) rotate(0deg);
+    border: 2px solid var(--medGrey);
+  }
+  90% {
+    transform: rotate(-180deg) translateX(10rem) rotate(180deg);
+    border: 2px solid var(--medGrey);
+  }
+  100% {
+    transform: rotate(-180deg) translateX(10rem) rotate(180deg);
+    border: 2px solid var(--correct);
+  }
+}
+@keyframes over-circle2 {
+  0% {
+    transform: rotate(0deg) translateX(-5rem) rotate(0deg);
+    border: 2px solid var(--medGrey);
+  }
+  90% {
+    transform: rotate(180deg) translateX(-5rem) rotate(-180deg);
+    border: 2px solid var(--medGrey);
+  }
+  100% {
+    transform: rotate(180deg) translateX(-5rem) rotate(-180deg);
+    border: 2px solid var(--correct);
+  }
+}
+
+@keyframes stay-still {
+  0% {
+    border: 2px solid var(--medGrey);
+  }
+  90% {
+    border: 2px solid var(--medGrey);
+  }
+  100% {
+    border: 2px solid var(--correct);
+  }
+}
+@keyframes move-title-up {
+  0% {
+    top: 0;
+  }
+  75% {
+    top: 0;
+  }
+  100% {
+    top: -8rem;
+  }
+}
+
+@keyframes move-main-up {
+  0% {
+    top: -7rem;
+    opacity: 0;
+  }
+  75% {
+    top: -7rem;
+    opacity: 0;
+  }
+  100% {
+    top: -15rem;
+    opacity: 1;
+  }
+}
+
+@keyframes move-body-up {
+  0% {
+    top: -7rem;
+    opacity: 0;
+  }
+  100% {
+    top: -15rem;
+    opacity: 1;
+  }
+}
+
+
+/* Gameplay CSS */
+
+#menu-bar{
+  position:absolute;
+  width: 90%;
+  max-width: 67.5rem;
+  left: 5%;
+  top:4rem;
+  display: flex;
+  justify-content: space-between;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity var(--opacityDuration) ease-in-out;
+}
+
+#gameplay-container{
+  position: relative;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity var(--opacityDuration) ease-in-out;
+}
+
+@media screen and (min-width: 1216px){
+  #menu-bar{
+    left: calc((100vw - 67.5rem - 1rem) / 2);
+  }
+}
+
+#subtitle, #description-container{
+  position: relative;
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+#subtitle{
+  margin-top: -2rem;
+  transition: opacity var(--opacityDuration) ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.letter-block-container{
+  position: relative;
+  padding: 0 1rem;
+  display: flex;
+  gap:1rem;
+  justify-content: center;
+  margin: 2rem 0;
+  min-height: 3rem;
+}
+
+#unscrambled-container{
+  margin-bottom: 4rem;
+}
+
+.move-body-up{
+  animation: move-body-up var(--animationTimeBodyUp) ease-in-out forwards;
+}
+
+.highlight-container{
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  text-align:center;
+}
+
+.center{
+  text-align: center;
+}
+
+.big-text{
+  font-weight: 500;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+}
+
+#question-number{
+  margin-bottom: 2rem;
+}
+
+@keyframes jiggle{
+  0%{transform: rotate(0deg);} 
+  12.5%{transform: rotate(15deg);}
+  25%{transform: rotate(0deg);} 
+  37.5%{transform: rotate(-15deg);}
+  50%{transform: rotate(0deg);} 
+  62.5%{transform: rotate(15deg);}
+  75%{transform: rotate(0deg);} 
+  87.5%{transform: rotate(-15deg);}
+  100%{transform: rotate(0deg);}
+}
+
+@keyframes jump{
+  0%{transform: translateY(0);} 
+  50%{transform: translateY(-1rem);}
+  100%{transform: translateY(0);} 
+}
+
+.correct{
+  border: 2px solid var(--correct);
+}
+
+.correct-animation{
+  animation: jump 0.25s ease-in-out forwards;
+}
+
+.incorrect{
+  border: 2px solid var(--incorrect);
+}
+
+.incorrect-animation{
+  animation: jiggle 0.25s ease-in-out forwards;
+}
