@@ -78,7 +78,7 @@ function nextWord(n){
     console.log(successMsg);
   }
   else{
-    eid("description-container").innerHTML = descriptions[n];
+    eid("description-container").innerHTML = "Description: " + descriptions[n];
     eid("scrambled-container").innerHTML = "";
     eid("unscrambled-container").innerHTML = "";
     for(let i=0; i<scrambledWords[n].length; i++){
