@@ -220,7 +220,7 @@ function touchEndHandler(e) {
   let target = document.elementFromPoint(touch.clientX, touch.clientY);
   console.log(target);
   if (currentDrag) {
-      if(target.classList.contains("letter-block-filled")){
+      if(target.classList.contains("letter-block-filled") && target.parentNode != eid("title")){
           //element is occupied by a current draggable object
           let newTarget = target.parentNode;
           currentDragParent.append(target);
