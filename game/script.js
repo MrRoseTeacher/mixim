@@ -24,6 +24,7 @@ let currentDragParent;
 const builderURL = "https://codepen.io/tv58777/pen/VYapgWN";
 const remixLink = builderURL + window.location.search;
 let gameContainerVisible = false;
+let firstGame = true;
 
 //function must split up the String, replace + with " ", separate the words into an array (maybe keep the original as well?)
 function parseContent(text){
@@ -141,7 +142,9 @@ function checkWord(n){
     }
   }
   if(passed){
-    eid("next").innerHTML = "Next Question";
+    setTimeout(function(){
+        eid("flippable-button").style.transform = "rotateY(-180deg)";
+    }, 500);
     currentQuestion++;
   }
   
@@ -184,32 +187,39 @@ function dropHandler(e){
   currentDragParent = null;
 }
 
-eid("next").onclick = function(){
-  if(this.innerHTML != "Next Question"){
+eid("check").onclick = function(){
     checkWord(currentQuestion);
-  }
-  else{
-    nextWord(currentQuestion);
-    this.innerHTML = "Check Answer";
-  }
+}
+
+eid("next").onclick = function(){
+    toggleGameContainer();
+    setTimeout(function(){
+        nextWord(currentQuestion);
+        toggleGameContainer();
+    }, opacityDuration);
+    eid("flippable-button").style.transform = "";
 }
 
 function toggleGameContainer(){
   if(!gameContainerVisible){
-    // setTimeout(function(){
     eid("gameplay-container").style.visibility = "visible";
     eid("gameplay-container").style.opacity = 1;
-    if(!eid("gameplay-container").classList.contains("move-body-up")){
+    if(firstGame){
+        firstGame = false;
       eid("gameplay-container").classList.add("move-body-up");
+      setTimeout(function(){
+        eid("gameplay-container").style.opacity = 1;
+        eid("gameplay-container").style.top = "-240px";
+        eid("gameplay-container").classList.remove("move-body-up");
+    }, opacityDuration);
     }      
-    // }, 300);
     gameContainerVisible = !gameContainerVisible;
   }
   else{
     eid("gameplay-container").style.opacity = 0;
     setTimeout(function(){
       eid("gameplay-container").style.visibility = "hidden";
-    }, 300);
+    }, opacityDuration);
     gameContainerVisible = !gameContainerVisible;
   }
 }
@@ -218,16 +228,23 @@ eid("start-game").onclick = function(){
   //hide main
   eid("main").style.opacity = 0;
   setTimeout(function(){
-    console.log(eid("main").style.opacity);
     eid("main").style.display = "none";
     eid("menu-bar").style.visibility = "visible";
     eid("menu-bar").style.opacity = 1;
     eid("subtitle").style.visibility = "visible";
     eid("subtitle").classList.add("move-body-up");
+    eid("flippable-button-container").style.visibility = "visible";
+    eid("flippable-button-container").classList.add("move-body-up");
     toggleGameContainer();
-  }, 300);
+  }, opacityDuration);
 }
 
+
+setTimeout(function(){
+    eid("main").style.opacity = 1;
+    eid("main").style.top = "-240px";
+    eid("main").classList.remove("move-main-up");
+}, 3500);
 eid("remix-link").href = remixLink;
 parseContent(decoded);
 nextWord(0);

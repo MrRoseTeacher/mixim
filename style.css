@@ -93,7 +93,10 @@ a:visited{
   border-radius: 3px;
   top: -7rem;
   opacity: 0;
-  animation: move-main-up calc(var(--animationTime) + 1s) ease-in-out forwards calc(var(--animationDelay) + 0s);
+}
+
+.move-main-up{
+    animation: move-main-up calc(var(--animationTime) + 1s) ease-in-out forwards calc(var(--animationDelay) + 0s);
 }
 
 .link-button{
@@ -165,7 +168,7 @@ button:active{
 }
 
 .letter-block-filled, .letter-block-empty {
-  Width: 3rem;
+  width: 3rem;
   height: 3rem;
   line-height: 3rem;
   font-size: 1.2rem;
@@ -180,6 +183,11 @@ button:active{
 
 .letter-block-filled{
   box-shadow: 0px 9px 13px -7px var(--medGrey)
+}
+
+.letter-block-empty .letter-block-filled{
+    margin-top: -2px;
+    margin-left: -2px;
 }
 
 .letter-block-empty{
@@ -441,7 +449,7 @@ button:active{
 }
 
 .correct-animation{
-  animation: jump 0.25s ease-in-out forwards;
+  animation: jump 0.4s ease-in-out forwards;
 }
 
 .incorrect{
@@ -449,5 +457,40 @@ button:active{
 }
 
 .incorrect-animation{
-  animation: jiggle 0.25s ease-in-out forwards;
+  animation: jiggle 0.4s ease-in-out forwards;
+}
+
+#flippable-button-container{
+  position: relative;
+  opacity: 0;
+  visibility: hidden;
+  perspective: 800px;
+}
+
+#flippable-button{
+  display: block;
+  width: 7.5rem;
+  margin: 0 auto;
+  position: relative;
+  transition: opacity var(--opacityDuration) linear, transform 0.5s linear;
+  transform-style: preserve-3d;
+}
+
+#flippable-button button{
+  display: block;
+  width: 7.5rem;
+  position: absolute;
+  width: 100%;
+  backface-visibility: hidden;
+}
+
+#flippable-button button:nth-child(2){
+  transform: rotateY(180deg);
+}
+
+#next{
+    border: 2px solid var(--correct);
+    border-radius: 3px;
+    background: var(--lightGreyBG);
+    color: var(--text);
 }
