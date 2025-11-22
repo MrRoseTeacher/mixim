@@ -21,7 +21,7 @@ let totalQuestions = 1;
 let currentQuestion = 0;
 let currentDrag;
 let currentDragParent;
-const builderURL = "https://codepen.io/tv58777/pen/VYapgWN";
+const builderURL = "https://mrroseteacher.github.io/mixim/";
 const remixLink = builderURL + window.location.search;
 let gameContainerVisible = false;
 let firstGame = true;

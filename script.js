@@ -118,7 +118,7 @@ eid("gen-mixim").onclick = function(){
   //URIencoded
   query = encodeURIComponent(query);
 
-  const domain = "https://codepen.io/tv58777/pen/wBGqPMM";
+  const domain = "https://mrroseteacher.github.io/mixim/game/";
   const fullURL = domain + "?data=" + query
   
   //populate the link box below
