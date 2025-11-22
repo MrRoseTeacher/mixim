@@ -226,7 +226,7 @@ function touchEndHandler(e) {
           currentDragParent.append(target);
           newTarget.append(currentDrag);
       }
-      else{
+      else if(target.classList.contains("letter-block-empty")){
           target.append(currentDrag);
       }
   }
