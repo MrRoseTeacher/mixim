@@ -93,8 +93,11 @@ function createLetterBlock(letter){
   const node = document.createElement("div");
   node.classList.add("letter-block-filled");
   node.draggable = true;
-  //add dragstart and touchstart
   node.ondragstart = dragStartHandler;
+  //mobile touch listeners
+  node.addEventListener("touchstart", touchStartHandler, { passive: false });
+  node.addEventListener("touchmove", touchMoveHandler, { passive: false });
+  node.addEventListener("touchend", touchEndHandler, { passive: false });
   node.innerHTML = letter;
   return node;
 }
@@ -161,6 +164,8 @@ function checkWord(n){
   }, 300);
 }
 
+
+//drag and drop CHROME
 function dragStartHandler(e){
   currentDrag = e.target;
   if(e.target.parentNode != eid("scrambled-container")){
@@ -182,6 +187,55 @@ function dropHandler(e){
   }
   else{
     e.target.append(currentDrag);
+  }
+  currentDrag = null;
+  currentDragParent = null;
+}
+
+//drag and drop MOBILE
+function touchStartHandler(e) {
+  currentDrag = e.target;
+  if(e.target.parentNode != eid("scrambled-container")){
+    currentDragParent = e.target.parentNode;
+  }
+  //reduce opacity for visual feedback
+  e.target.style.opacity = "0.6"; 
+}
+
+
+function touchMoveHandler(e) {
+  e.preventDefault(); // prevent scrolling
+  const touch = e.touches[0];  //corresponds to a single finger touch or the first in a two-finger press
+  const elem = currentDrag;
+  if (elem) {
+    elem.style.position = "absolute";
+    elem.style.left = touch.clientX + "px";
+    elem.style.top = touch.clientY - currentDrag.parentNode.getBoundingClientRect().top + "px";
+  }
+}
+
+
+function touchEndHandler(e) {
+  const touch = e.changedTouches[0];  //corresponds to the movement of the first finger
+  let target = document.elementFromPoint(touch.clientX, touch.clientY);
+  console.log(target);
+  if (currentDrag) {
+      if(target.classList.contains("letter-block-filled")){
+          //element is occupied by a current draggable object
+          let newTarget = target.parentNode;
+          currentDragParent.append(target);
+          newTarget.append(currentDrag);
+      }
+      else{
+          target.append(currentDrag);
+      }
+  }
+
+  if (currentDrag) {
+      currentDrag.style.opacity = "1";
+      currentDrag.style.position = "";
+      currentDrag.style.left = "";
+      currentDrag.style.top = "";
   }
   currentDrag = null;
   currentDragParent = null;
@@ -250,12 +304,8 @@ parseContent(decoded);
 nextWord(0);
 
 //use a modal for the success message and disable the buttons
-//make modal
 //update progress counter
 //make timer
 //figure out ending timing
-//Configure play screen
 //add touch, Safari drag events
-//add a page container to this and the builder page
-//make the button do a CSS flip?
 //Remix button
