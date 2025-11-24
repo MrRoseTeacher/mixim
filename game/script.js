@@ -25,6 +25,40 @@ const builderURL = "https://mrroseteacher.github.io/mixim/";
 const remixLink = builderURL + window.location.search;
 let gameContainerVisible = false;
 let firstGame = true;
+let minutes = 0;
+let seconds = -1;
+let preseconds;
+let gameInterval;
+
+function startTimer(){
+  gameInterval = setInterval(function(){
+    seconds++;
+    if(seconds >= 60){
+      minutes++;
+      seconds -= 60;
+    }
+    if(seconds < 10){
+      preseconds = "0";
+    }
+    else{
+      preseconds = "";
+    }
+    let elapsed = String(minutes) + ":" + preseconds + String(seconds);
+    eid("timer").innerHTML = elapsed;
+  }, 1000);
+}
+
+function endTimer(){
+  clearInterval(gameInterval);
+}
+
+eid("timer-button").onclick = function(){
+  eid("flippable-timer").style.transform = "rotateY(-180deg)";
+}
+
+eid("timer").onclick = function(){
+  eid("flippable-timer").style.transform = "";
+}
 
 //function must split up the String, replace + with " ", separate the words into an array (maybe keep the original as well?)
 function parseContent(text){
@@ -74,8 +108,9 @@ function scramble(ar){
 
 //displays scrambled word. Creates letterboxes, and calculates needed width.
 function nextWord(n){
+  eid("progress-counter").innerHTML = String(n+1) + "/" + String(totalQuestions);
   if(n >= totalQuestions){
-    console.log(successMsg);
+    showSucessModal(3000);
   }
   else{
     eid("description-container").innerHTML = "Description: " + descriptions[n];
@@ -218,7 +253,6 @@ function touchMoveHandler(e) {
 function touchEndHandler(e) {
   const touch = e.changedTouches[0];  //corresponds to the movement of the first finger
   let target = document.elementFromPoint(touch.clientX, touch.clientY);
-  console.log(target);
   if (currentDrag) {
       if(target.classList.contains("letter-block-filled") && target.parentNode != eid("title")){
           //element is occupied by a current draggable object
@@ -290,7 +324,27 @@ eid("start-game").onclick = function(){
     eid("flippable-button-container").style.visibility = "visible";
     eid("flippable-button-container").classList.add("move-body-up");
     toggleGameContainer();
+    startTimer();
   }, opacityDuration);
+}
+
+function showSucessModal(duration){
+  eid("successModal").innerHTML = "";
+  eid("successModal").style.visibility = "visible";
+  const miximFireworks = lottie.loadAnimation({
+    container: successModal,
+    path: 'https://rdotrose.github.io/mixim/miximFireworks.json',
+    render: 'svg',
+    loop: false,
+    autoplay: true
+  });
+  eid("successModal").style.opacity = 0.97;
+  setTimeout(function(){
+    eid("successModal").style.opacity = 0;
+  }, opacityDuration + duration);
+  setTimeout(function(){
+    eid("successModal").style.visibility = "hidden";
+  }, opacityDuration*2 + duration);
 }
 
 

@@ -194,9 +194,9 @@ button:active{
   border: 2px solid var(--lightGrey);
 }
 
-#modal{
+#modal, #successModal{
   position: fixed;
-  top: 5rem;
+  top: 8rem;
   width: 30rem;
   left: calc((100vw - 30rem) / 2);
   padding: 2rem;
@@ -208,6 +208,11 @@ button:active{
   opacity: 0;
   visibility: hidden;
   transition: opacity var(--opacityDuration) ease-in-out;
+}
+
+#successModal{
+  width: 75%;
+  left: calc((100vw - 75%) / 2);
 }
 
 /* Title Animations */
@@ -351,16 +356,54 @@ button:active{
 
 #menu-bar{
   position:absolute;
+  align-items:center;
   width: 90%;
   max-width: 67.5rem;
   left: 5%;
-  top:4rem;
+  top:3.6rem;
   display: flex;
   justify-content: space-between;
   visibility: hidden;
   opacity: 0;
   transition: opacity var(--opacityDuration) ease-in-out;
 }
+
+#timer-container{
+  position: relative;
+  top: 0;
+  perspective: 800px;
+}
+
+#flippable-timer{
+  width: 4rem;
+  height: 2.5rem;
+  position: relative;
+  transition: transform 0.5s linear;
+  transform-style: preserve-3d;
+}
+
+#timer-button, #timer, #progress-counter{
+  height: 2.5rem;
+  line-height: 2.5rem;
+  padding: 0;
+  width: 4rem;
+  text-align:center;
+}
+
+#timer-button, #timer{
+  position: absolute;
+  backface-visibility: hidden;
+}
+#timer-button{
+  padding-top: 0.45rem;
+}
+
+#timer{
+  transform: rotateY(180deg);
+  font-size: 1rem;
+}
+
+
 
 #gameplay-container{
   position: relative;
