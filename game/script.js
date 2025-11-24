@@ -109,18 +109,12 @@ function scramble(ar){
 //displays scrambled word. Creates letterboxes, and calculates needed width.
 function nextWord(n){
   eid("progress-counter").innerHTML = String(n+1) + "/" + String(totalQuestions);
-  if(n >= totalQuestions){
-    showSucessModal(3000);
-  }
-  else{
-    eid("description-container").innerHTML = "Description: " + descriptions[n];
-    eid("scrambled-container").innerHTML = "";
-    eid("unscrambled-container").innerHTML = "";
-    for(let i=0; i<scrambledWords[n].length; i++){
-      eid("scrambled-container").append(createLetterBlock(scrambledWords[n][i]));
-      eid("unscrambled-container").append(createEmptyLetterBlock());
-    }
-    // currentQuestion++;
+  eid("description-container").innerHTML = "Description: " + descriptions[n];
+  eid("scrambled-container").innerHTML = "";
+  eid("unscrambled-container").innerHTML = "";
+  for(let i=0; i<scrambledWords[n].length; i++){
+    eid("scrambled-container").append(createLetterBlock(scrambledWords[n][i]));
+    eid("unscrambled-container").append(createEmptyLetterBlock());
   }
 }
 
@@ -180,10 +174,16 @@ function checkWord(n){
     }
   }
   if(passed){
-    setTimeout(function(){
+    if(currentQuestion >= totalQuestions - 1){
+      setTimeout(function(){showSucessModal(3000);}, 1000);
+      endTimer();
+    }
+    else{
+      setTimeout(function(){
         eid("flippable-button").style.transform = "rotateY(-180deg)";
     }, 500);
     currentQuestion++;
+    }
   }
   
   //clear animations
@@ -359,6 +359,3 @@ setTimeout(function(){
 eid("remix-link").href = remixLink;
 parseContent(decoded);
 nextWord(0);
-
-
-//Rework ending timing... what to do with next question button?
