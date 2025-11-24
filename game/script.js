@@ -333,7 +333,7 @@ function showSucessModal(duration){
   eid("successModal").style.visibility = "visible";
   const miximFireworks = lottie.loadAnimation({
     container: successModal,
-    path: 'https://rdotrose.github.io/mixim/miximFireworks.json',
+    path: 'https://mrroseteacher.github.io/mixim/miximFireworks.json',
     render: 'svg',
     loop: false,
     autoplay: true
