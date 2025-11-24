@@ -208,11 +208,13 @@ button:active{
   opacity: 0;
   visibility: hidden;
   transition: opacity var(--opacityDuration) ease-in-out;
+  z-index: 3;
 }
 
 #successModal{
   width: 75%;
   left: calc((100vw - 75%) / 2);
+  z-index: 2;
 }
 
 /* Title Animations */

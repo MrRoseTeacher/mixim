@@ -345,6 +345,9 @@ function showSucessModal(duration){
   setTimeout(function(){
     eid("successModal").style.visibility = "hidden";
   }, opacityDuration*2 + duration);
+  eid("modal").style.top = "384px"; 
+  showModal(successMsg, duration);
+  setTimeout(function(){eid("modal").style.top = "8rem";}, duration*1.5);
 }
 
 
@@ -357,9 +360,5 @@ eid("remix-link").href = remixLink;
 parseContent(decoded);
 nextWord(0);
 
-//use a modal for the success message and disable the buttons
-//update progress counter
-//make timer
-//figure out ending timing
-//add touch, Safari drag events
-//Remix button
+
+//Rework ending timing... what to do with next question button?
