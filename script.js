@@ -31,11 +31,17 @@ function displayDeleteRow(){
   const deleteIcons = document.getElementsByClassName("delete-row");
   if(document.getElementsByClassName("content-row").length <= 1){    
     for(let i = 0; i<deleteIcons.length; i++){
+      if(window.screen.width <= 450){
+        deleteIcons[i].previousElementSibling.previousElementSibling.style.width = "100%";
+      }
       deleteIcons[i].style.display = "none";
     }
   }
   else{
     for(let i = 0; i<deleteIcons.length; i++){
+      if(window.screen.width <= 450){
+        deleteIcons[i].previousElementSibling.previousElementSibling.style.width = "84%";
+      }
       deleteIcons[i].style.display = "block";
     }
   }
@@ -77,7 +83,7 @@ function addRow(){
   newRow.append(newDelete);
   
   //append new row before addRow
-  eid("main").insertBefore(newRow, this.parentNode);
+  eid("main").insertBefore(newRow, eid("add-row").parentNode);
   
   //call delete-row display function
   displayDeleteRow();
@@ -145,10 +151,43 @@ eid("gen-mixim").onclick = function(){
   }
 }
 
+eid("upload").onclick = function(){
+  eid("file-upload").click();
+}
+
+eid("file-upload").onchange = async function(){
+  try{
+    //access the file using the file API
+    const file = this.files[0];
+    const fileContent = await file.text();
+    const parsed = JSON.parse(fileContent);
+    const miximInfo = Object.values(parsed);
+    const allInputs = document.getElementsByClassName("mixim-input");
+    if(miximInfo.length % 2 != 0){
+      showModal("Sorry, something is wrong with your file. You seem to be missing a field.", 3000);
+      return;
+    }
+    else{
+      const adds = (miximInfo.length - allInputs.length) / 2;
+      for(let i=0; i<adds; i++){
+        addRow();
+      }
+      for(let i=0; i<allInputs.length; i++){
+        allInputs[i].value = miximInfo[i];
+      }
+    }
+
+  }
+  catch(error){
+    console.error(error);
+    showModal("Sorry, something went wrong with your file.", 3000);
+  }
+}
+
 builderOnLoad();
 
 /* TEMP CODE */
-
+/*
 function popDefault(){
   eid("add-row").click();
   eid("add-row").click();
@@ -170,4 +209,4 @@ function popDefault(){
 }
 
 popDefault();
-
+*/

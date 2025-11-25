@@ -339,9 +339,35 @@ function showSucessModal(duration){
   setTimeout(function(){
     eid("successModal").style.visibility = "hidden";
   }, opacityDuration*2 + duration);
-  eid("modal").style.top = "384px"; 
+  altStyleModal();
   showModal(successMsg, duration);
-  setTimeout(function(){eid("modal").style.top = "8rem";}, duration*1.5);
+  setTimeout(function(){
+    resetModalStyle();
+  }, duration*1.5);
+}
+
+function resetModalStyle(){
+  eid("modal").style.top = "8rem";
+  eid("modal").style.border = "2px solid var(--darkGrey)";
+  eid("modal").style.background = "var(--lightBG)";
+  eid("modal").style.color = "var(--text)";
+  eid("modal").style.padding = "2rem";
+}
+
+function altStyleModal(){
+  if(window.screen.width >= 651 && window.screen.width <= 850){
+    eid("modal").style.top = "300px";
+  }
+  else if(window.screen.width > 850){
+    eid("modal").style.top = "380px";
+  }
+  else{
+    eid("modal").style.top = "420px";
+  }
+  eid("modal").style.border = "none";
+  eid("modal").style.background = "var(--darkGrey)";
+  eid("modal").style.color = "var(--extraLightBG)";
+  eid("modal").style.padding = "1rem";
 }
 
 
