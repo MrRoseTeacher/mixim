@@ -34,6 +34,8 @@
 
 body{
   background: var(--lightBG);
+  max-height: 95vh;
+  overflow: hidden;
 }
 
 a{
@@ -67,6 +69,29 @@ a:visited{
 
 .content-row .content-col:nth-child(2){
   max-width: 70%;
+}
+
+@media screen and (max-width:450px){
+  .content-row{
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .content-row .content-col:first-child{
+    flex-shrink: initial;
+    order: 1;
+    width: 100%;
+    max-width: none;
+  }
+
+  .content-row .content-col:nth-child(2){
+    width: 100%;
+    order: 3;
+    max-width: none;
+  }
+  .content-row button{
+    width: 10%;
+    order: 2;
+  }
 }
 
 .content-col{
@@ -164,7 +189,7 @@ button:active{
   top: 50%;
   left: 50%;
   margin-top: -2rem; 
-  margin-left: -2rem; 
+  margin-left: -1.55rem; 
 }
 
 .letter-block-filled, .letter-block-empty {
@@ -216,10 +241,23 @@ button:active{
 }
 
 #successModal{
-  width: 75%;
-  left: calc((100vw - 75%) / 2);
+  width: 90%;
+  left: calc((100vw - 90%) / 2);
   z-index: 2;
   background: var(--extraLightBG);
+}
+
+@media screen and (max-width: 450px){
+  #successModal{
+    top:15rem;
+  }
+}
+
+@media screen and (min-width: 850px){
+  #successModal{
+    width: 40rem;
+    left: calc((100vw - 40rem) / 2);
+  }
 }
 
 /* Title Animations */
@@ -373,6 +411,17 @@ button:active{
   visibility: hidden;
   opacity: 0;
   transition: opacity var(--opacityDuration) ease-in-out;
+}
+
+@media screen and (max-width: 675px){
+  #menu-bar{
+    top: 8rem;
+    justify-content: center;
+    gap: 2rem;
+  }
+  #subtitle{
+    margin-top: 4rem;
+  }
 }
 
 #timer-container{

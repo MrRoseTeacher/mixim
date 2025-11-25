@@ -7,11 +7,17 @@ function displayDeleteRow(){
   const deleteIcons = document.getElementsByClassName("delete-row");
   if(document.getElementsByClassName("content-row").length <= 1){    
     for(let i = 0; i<deleteIcons.length; i++){
+      if(window.screen.width <= 450){
+        deleteIcons[i].previousElementSibling.previousElementSibling.style.width = "100%";
+      }
       deleteIcons[i].style.display = "none";
     }
   }
   else{
     for(let i = 0; i<deleteIcons.length; i++){
+      if(window.screen.width <= 450){
+        deleteIcons[i].previousElementSibling.previousElementSibling.style.width = "84%";
+      }
       deleteIcons[i].style.display = "block";
     }
   }
@@ -144,16 +150,16 @@ eid("file-upload").onchange = async function(){
     const fileContent = await file.text();
     const parsed = JSON.parse(fileContent);
     const miximInfo = Object.values(parsed);
+    const allInputs = document.getElementsByClassName("mixim-input");
     if(miximInfo.length % 2 != 0){
       showModal("Sorry, something is wrong with your file. You seem to be missing a field.", 3000);
       return;
     }
     else{
-      const adds = (miximInfo.length - 4) / 2;
+      const adds = (miximInfo.length - allInputs.length) / 2;
       for(let i=0; i<adds; i++){
         addRow();
       }
-      const allInputs = document.getElementsByClassName("mixim-input");
       for(let i=0; i<allInputs.length; i++){
         allInputs[i].value = miximInfo[i];
       }

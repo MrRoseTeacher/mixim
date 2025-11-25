@@ -361,7 +361,7 @@ function resetModalStyle(){
 }
 
 function altStyleModal(){
-  eid("modal").style.top = "384px"; 
+  eid("modal").style.top = "420px"; 
   eid("modal").style.border = "none";
   eid("modal").style.background = "var(--darkGrey)";
   eid("modal").style.color = "var(--extraLightBG)";
