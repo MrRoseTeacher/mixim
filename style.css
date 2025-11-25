@@ -211,10 +211,15 @@ button:active{
   z-index: 3;
 }
 
+#file-upload{
+  display: none;
+}
+
 #successModal{
   width: 75%;
   left: calc((100vw - 75%) / 2);
   z-index: 2;
+  background: var(--extraLightBG);
 }
 
 /* Title Animations */

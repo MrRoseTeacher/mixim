@@ -1,8 +1,6 @@
 /*
 Builder JS
 */
-
-//handle files
 //handle remix
 
 function displayDeleteRow(){
@@ -55,7 +53,7 @@ function addRow(){
   newRow.append(newDelete);
   
   //append new row before addRow
-  eid("main").insertBefore(newRow, this.parentNode);
+  eid("main").insertBefore(newRow, eid("add-row").parentNode);
   
   //call delete-row display function
   displayDeleteRow();
@@ -135,10 +133,43 @@ eid("gen-mixim").onclick = function(){
   }
 }
 
+eid("upload").onclick = function(){
+  eid("file-upload").click();
+}
+
+eid("file-upload").onchange = async function(){
+  try{
+    //access the file using the file API
+    const file = this.files[0];
+    const fileContent = await file.text();
+    const parsed = JSON.parse(fileContent);
+    const miximInfo = Object.values(parsed);
+    if(miximInfo.length % 2 != 0){
+      showModal("Sorry, something is wrong with your file. You seem to be missing a field.", 3000);
+      return;
+    }
+    else{
+      const adds = (miximInfo.length - 4) / 2;
+      for(let i=0; i<adds; i++){
+        addRow();
+      }
+      const allInputs = document.getElementsByClassName("mixim-input");
+      for(let i=0; i<allInputs.length; i++){
+        allInputs[i].value = miximInfo[i];
+      }
+    }
+
+  }
+  catch(error){
+    console.error(error);
+    showModal("Sorry, something went wrong with your file.", 3000);
+  }
+}
+
 builderOnLoad();
 
 /* TEMP CODE */
-
+/*
 function popDefault(){
   eid("add-row").click();
   eid("add-row").click();
@@ -160,4 +191,4 @@ function popDefault(){
 }
 
 popDefault();
-
+*/
