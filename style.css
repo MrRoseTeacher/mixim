@@ -247,7 +247,7 @@ button:active{
   background: var(--extraLightBG);
 }
 
-@media screen and (max-width: 450px){
+@media screen and (max-width: 650px){
   #successModal{
     top:17.5rem;
     width: 24rem;
@@ -255,10 +255,17 @@ button:active{
   }
 }
 
-@media screen and (min-width: 850px){
+@media screen and (min-width: 651px) and (max-width: 850px){
   #successModal{
-    width: 40rem;
-    left: calc((100vw - 40rem) / 2);
+    width: 27rem;
+    left: calc((100vw - 27rem) / 2);
+  }
+}
+
+@media screen and (min-width: 851px){
+  #successModal{
+    width: 36rem;
+    left: calc((100vw - 36rem) / 2);
   }
 }
 

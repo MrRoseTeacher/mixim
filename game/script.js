@@ -361,7 +361,15 @@ function resetModalStyle(){
 }
 
 function altStyleModal(){
-  eid("modal").style.top = "420px"; 
+  if(window.screen.width >= 651 && window.screen.width <= 850){
+    eid("modal").style.top = "300px";
+  }
+  else if(window.screen.width > 850){
+    eid("modal").style.top = "380px";
+  }
+  else{
+    eid("modal").style.top = "420px";
+  }
   eid("modal").style.border = "none";
   eid("modal").style.background = "var(--darkGrey)";
   eid("modal").style.color = "var(--extraLightBG)";
