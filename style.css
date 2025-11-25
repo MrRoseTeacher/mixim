@@ -34,8 +34,6 @@
 
 body{
   background: var(--lightBG);
-  max-height: 95vh;
-  overflow: hidden;
 }
 
 a{
