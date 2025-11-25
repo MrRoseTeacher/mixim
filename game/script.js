@@ -87,6 +87,8 @@ function parseContent(text){
   }
   
   totalQuestions = scrambledWords.length;
+  eid("topic-container").innerHTML = topic;
+  eid("question-number").innerHTML = totalQuestions + " Questions";
 }
 
 function scramble(ar){
@@ -370,12 +372,11 @@ function altStyleModal(){
   eid("modal").style.padding = "1rem";
 }
 
-
+parseContent(decoded);
 setTimeout(function(){
     eid("main").style.opacity = 1;
     eid("main").style.top = "-240px";
     eid("main").classList.remove("move-main-up");
 }, 3500);
 eid("remix-link").href = remixLink;
-parseContent(decoded);
 nextWord(0);
