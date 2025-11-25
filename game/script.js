@@ -5,6 +5,7 @@ const encoded = urlParams.get('data');
 //decode the URI (url safe) encoding
 if(encoded){
   const decoded = decodeCompressed(encoded);
+  console.log(decoded);
 }
 else{
   const decoded = "topic=Words+that+English+borrowed+from+Indigenous+Language&word1=sound&desc1=A+noise+made&word2=Light&desc2=What+your+eyes+see&word3=Touch&desc3=What+you+feel+with+your+fingers&successMsg=Congratulations+on+finishing+the+game!";
