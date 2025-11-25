@@ -3,7 +3,29 @@ Builder JS
 */
 
 //handle files
-//handle remix
+
+//creates a key/value pair of the parameters
+const urlParams = new URLSearchParams(window.location.search);
+//access the 'data'
+const encoded = urlParams.get('data');
+//decode the URI (url safe) encoding
+if(encoded){
+  const decoded = decodeCompressed(encoded);
+  const raw = decoded.split("&");
+  const pairsToAdd = (raw.length - 4) / 2;
+  for(let i=0; i<pairsToAdd; i++){
+    addRow();
+  }
+  populateRemix(raw);
+}
+
+function populateRemix(ar){
+  const allInputs = document.getElementsByClassName("mixim-input");
+  for(let i=0; i<allInputs.length; i++){
+    ar[i] = ar[i].replaceAll("+", " ");
+    allInputs[i].value = ar[i];
+  }
+}
 
 function displayDeleteRow(){
   const deleteIcons = document.getElementsByClassName("delete-row");
@@ -91,32 +113,20 @@ eid("gen-mixim").onclick = function(){
   }
   
   //add the topic, trim and replace space chars with +
-  query += "topic=" + allInputs[0].value.trim().replaceAll(" ", "+");
+  query += allInputs[0].value.trim().replaceAll(" ", "+");
   
-  //use word-iteration and desc-iteration as the placeholder variables for the query
-  //iteration works in pairs of word and desc
-  let iteration = 1;
+  //information comes in pairs, so work with evens and odds
   for(let i = 1; i < allInputs.length -1; i++){
     let part = "&";
-    if(i % 2 == 1){
-      part += "word" + String(iteration) + "=";
-    }
-    else{
-      part += "desc" + String(iteration) + "=";
-      iteration++;
-    }
     part += allInputs[i].value.trim().replaceAll(" ", "+");
     query += part;
   }
   
   //add the success message, trim and replace spaces
-  query += "&successMsg=" + allInputs[allInputs.length -1].value.trim().replaceAll(" ", "+");
+  query += "&" + allInputs[allInputs.length -1].value.trim().replaceAll(" ", "+");
   
-  //base64 encoded
-  query = btoa(query);
-  
-  //URIencoded
-  query = encodeURIComponent(query);
+  //encoded
+  query = encodeCompressed(query);
 
   const domain = "https://mrroseteacher.github.io/mixim/game/";
   const fullURL = domain + "?data=" + query

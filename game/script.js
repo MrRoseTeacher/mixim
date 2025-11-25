@@ -1,17 +1,14 @@
-/* CODE FOR READING THE QUERY PARAMETER
 //creates a key/value pair of the parameters
 const urlParams = new URLSearchParams(window.location.search);
 //access the 'data'
 const encoded = urlParams.get('data');
 //decode the URI (url safe) encoding
-const clean = decodeURIComponent(encoded);
-//decode the base64 encoding
-const decoded = atob(clean);
-
-console.log(decoded);
-*/
-
-const decoded = "topic=Words+that+English+borrowed+from+Indigenous+Language&word1=sound&desc1=A+noise+made&word2=Light&desc2=What+your+eyes+see&word3=Touch&desc3=What+you+feel+with+your+fingers&successMsg=Congratulations+on+finishing+the+game!";
+if(encoded){
+  const decoded = decodeCompressed(encoded);
+}
+else{
+  const decoded = "topic=Words+that+English+borrowed+from+Indigenous+Language&word1=sound&desc1=A+noise+made&word2=Light&desc2=What+your+eyes+see&word3=Touch&desc3=What+you+feel+with+your+fingers&successMsg=Congratulations+on+finishing+the+game!";
+}
 const scrambledWords = [];
 const unscrambledWords = [];
 const descriptions = [];
@@ -66,9 +63,6 @@ function parseContent(text){
   for(let i=0; i<raw.length; i++){
     //trim out things like topic= and remove + with " "
     raw[i] = raw[i].replaceAll("+", " ");
-    
-    let begin = raw[i].indexOf("=") + 1;
-    raw[i] = raw[i].substring(begin);
     
     if(i == 0){
       topic = raw[i];
