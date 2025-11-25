@@ -249,7 +249,9 @@ button:active{
 
 @media screen and (max-width: 450px){
   #successModal{
-    top:15rem;
+    top:17.5rem;
+    width: 24rem;
+    left: calc((100vw - 24rem) / 2);
   }
 }
 
@@ -418,6 +420,7 @@ button:active{
     top: 8rem;
     justify-content: center;
     gap: 2rem;
+    z-index: 2;
   }
   #subtitle{
     margin-top: 4rem;
