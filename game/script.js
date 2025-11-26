@@ -27,6 +27,7 @@ let minutes = 0;
 let seconds = -1;
 let preseconds;
 let gameInterval;
+let swapHint = false;
 
 function startTimer(){
   gameInterval = setInterval(function(){
@@ -186,6 +187,9 @@ function checkWord(n){
     }, 500);
     currentQuestion++;
     }
+  }
+  else{
+    showModal("Drag one letter onto another to swap. Check your answer again when you are ready.", 5000);
   }
   
   //clear animations
