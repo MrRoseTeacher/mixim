@@ -41,8 +41,24 @@ a{
   color: var(--medGrey);
 }
 
+a:hover{
+  cursor: pointer;
+}
+
 a:visited{
   color: var(--medGrey);
+}
+
+#download-sample:visited{
+  color: var(--lightGrey);
+}
+
+.highlighted-block{
+  padding: 1rem;
+  margin: 1rem;
+  background: var(--lightGrey);
+  color: var(--text);
+  border-radius: 3px;
 }
 
 /* Builder Page Styles */
@@ -117,9 +133,15 @@ a:visited{
   opacity: 0;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  margin-bottom: 2rem;
+  width: 90%;
+  margin: 0 auto 2rem auto;
   align-items: center;
+  padding: 0 1rem;
+}
+
+h2{
+  font-weight: 300;
+  font-size: 1.3rem;
 }
 
 .minimal-button{
@@ -135,7 +157,7 @@ a:visited{
 }
 
 #user-guide{
-  transition: height 0.5s ease-in-out;
+  transition: height 1s ease-in-out;
   overflow: hidden;
 }
 
@@ -162,6 +184,7 @@ a:visited{
   padding: 0.8rem;
   border-radius: 3px;
   font-weight: 500;
+  font-size: 1rem;
 }
 
 .delete-row{
@@ -529,7 +552,7 @@ button:active{
   backface-visibility: hidden;
 }
 #timer-button{
-  padding-top: 0.45rem;
+  padding-top: 0.4rem;
 }
 
 #timer{
@@ -639,7 +662,7 @@ button:active{
 
 #flippable-button{
   display: block;
-  width: 7.5rem;
+  width: 9rem;
   margin: 0 auto;
   position: relative;
   transition: opacity var(--opacityDuration) linear, transform 0.5s linear;
@@ -648,7 +671,7 @@ button:active{
 
 #flippable-button button{
   display: block;
-  width: 7.5rem;
+  width: 9rem;
   position: absolute;
   width: 100%;
   backface-visibility: hidden;

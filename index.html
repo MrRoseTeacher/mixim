@@ -34,16 +34,44 @@
             <button id="user-guide-button" class="minimal-button">User Guide</button>
             <div id="user-guide">
                 <h2>Purpose</h2>
-                <p>Mixim is a learning game that encourages interactive spelling and definition review practice. Users will have to unscramble words, using the description or definition as a hint.</p>
+                <p>Mixim is a learning game designed to make spelling and definition review interactive and engaging. Players must unscramble words using the provided description or definition as a hint.</p>
                 <h2>Builder Page</h2>
-                <p>This is the builder page for the game, where you can specify your topic, word and description pairs, and a success message for the user when they finish. You can use the form to create your game, or you can use generative AI to create the content for you. Please read the sample prompt section if you are interested in using AI.</p>
+                <p>You are currently visiting the builder page for the game, where you can specify your topic, word and description pairs, and a success message for the user when they finish. You can either fill out the form manually or use generative AI to create the content for you.</p>
+                <p>Fill out the form to generate a Mixim game link. The generated link will encode the information you've entered. Share the link with anyone you want to play the game. All fields must be completed in order to generate a game link, and there must be at least one word/description pair.</p>
+                <p>Select the 'Add Row' button to add more word/description pair. If there are more than one pair, you will also have the option to delete a word/description pair.</p>
+                <h2>Using Generative AI</h2>
+                <p>You may use generative AI tools such as Chat GPT, Copilot, or Google Gemini to create game content for you. To do this: 
+                    <ul>
+                        <li>Download the sample template file.</li>
+                        <li>upload the same file in your chat window to help the AI give you the correct formatting.</li>
+                        <li>Copy and paste the sample prompt into your chat. Make any necessary changes to the prompt.</li>
+                        <li>Once the AI tool has given you a new file to use, you can upload it here to populate the form automatically.</li>                        
+                    </ul>
+                <div class="highlighted-block">
+                    <p>SAMPLE PROMPT (Replace ## and words in CAPS)</p>
+                    <p>Hello, I have a game shell created and I'd like your help generating content for the game. In the attached file, you can see the formatting. There needs to be a topic, pairs of words and descriptions/definitions, and a success message. It's important that the data file includes the information in that order. To be more specific with the words that are paired with the descriptions/definitions, please make sure that they are single words. Ideally, the words are less than 9 characters in length to avoid a line break on mobile phones.</p>
+                    <p>Please generate a json file for me containing ## word/description pairs about TOPIC. INCLUDE ANY SPECIFIC NOTES.</p>
+                    <p>The application uses UTF-8 characters, so if you need any symbols from other languages please use that formatting. If the content is math related, you may also use appropriate MathJax in the descriptions. Please note that the text will be imported into an input HTML tag, so please use escape characters in your MathJax code (such as \\neq instead of \neq).</p>
+                </div>
+                <h2>Game Page</h2>
+                <p>On the game page, users are greeted with a splash screen prompting them to start the game. Users can also select the 'remix' link in order to return to the builder page with the form pre-filled. If you like a game and would like to alter it, feel free to remix it and generate a new link.</p>
+                <p>Otherwise, if the user selects 'Start Game' they will see: 
+                    <ul>
+                        <li>A progress meter in the top left.</li>
+                        <li>An optional a timer in the top right.</li>
+                        <li>Instructions and description as their hint.</li>
+                        <li>A row of empty letter boxes.</li>
+                        <li>A row of scrambled, but filled letter boxes.</li>
+                        <li>A check answer button.</li>
+                    </ul> 
+                The user must drag the letter blocks into the empty ones and spell the word correctly. If the user is incorrect, the correct blocks will turn green and briefly hop. Incorrect blocks will turn red and briefly shake. The user must then drag letter blocks to swap letters and then check their work again. When the user get to the end, they will see the success screen.</p>  
             </div><!-- end user guide-->
             <button id="user-guide-icon" class="minimal-button"><span class="material-symbols-outlined">keyboard_arrow_down</span></button>
         </div>
         
         <div id="main" class="window move-main-up">
             <div class="button-row">
-            <button class="link-button" id="download-sample">Download Sample</button>
+            <a href="sampleMixim.json" class="link-button" id="download-sample" download="sampleMixim.json">Download Sample</a>
             <button class="link-button" id="upload">Upload JSON File</button>      
             </div><!-- end button-row-->
             

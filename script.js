@@ -3,9 +3,7 @@ Builder JS
 */
 
 let guideToggle = false;
-const userGuideHeight = eid("user-guide").clientHeight;
-console.log(userGuideHeight);
-eid("user-guide").style.height = 0;
+let userGuideHeight;
 
 //creates a key/value pair of the parameters
 const urlParams = new URLSearchParams(window.location.search);
@@ -101,6 +99,9 @@ function builderOnLoad(){
   
   //run check for deleteIcons. Makes first button invisible at the beginning.
   displayDeleteRow();
+  userGuideHeight = eid("user-guide").clientHeight;
+  console.log(userGuideHeight);
+  eid("user-guide").style.height = 0;
 }
 
 //get info from form and put it together in a link
@@ -203,4 +204,4 @@ function userGuideToggle(){
 eid("user-guide-button").onclick = userGuideToggle;
 eid("user-guide-icon").onclick = userGuideToggle;
 
-builderOnLoad();
+window.onload = builderOnLoad;
