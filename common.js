@@ -3,7 +3,7 @@ const opacityDuration = 500;
 // Encode with compression + Base64 (URL-safe)
 function encodeCompressed(str) {
   // Compress to Base64
-  let compressed = LZString.compressToBase64(str);
+  let compressed = LZString.compressToBase64(encodeURIComponent(str));
   // Make URL-safe by replacing +, /, =
   return compressed.replace(/\+/g, '-')
                     .replace(/\//g, '_')
@@ -18,7 +18,7 @@ function decodeCompressed(encoded) {
   while (base64.length % 4) {
     base64 += '=';
   }
-  return LZString.decompressFromBase64(base64);
+  return decodeURIComponent(LZString.decompressFromBase64(base64));
 }
 
 function eid(name){

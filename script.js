@@ -22,7 +22,7 @@ if(encoded){
 function populateRemix(ar){
   const allInputs = document.getElementsByClassName("mixim-input");
   for(let i=0; i<allInputs.length; i++){
-    ar[i] = ar[i].replaceAll("+", " ");
+    // ar[i] = ar[i].replaceAll("+", " ");
     allInputs[i].value = ar[i];
   }
 }
@@ -119,17 +119,17 @@ eid("gen-mixim").onclick = function(){
   }
   
   //add the topic, trim and replace space chars with +
-  query += allInputs[0].value.trim().replaceAll(" ", "+");
+  query += allInputs[0].value.trim();
   
   //information comes in pairs, so work with evens and odds
   for(let i = 1; i < allInputs.length -1; i++){
     let part = "&";
-    part += allInputs[i].value.trim().replaceAll(" ", "+");
+    part += allInputs[i].value.trim();
     query += part;
   }
   
   //add the success message, trim and replace spaces
-  query += "&" + allInputs[allInputs.length -1].value.trim().replaceAll(" ", "+");
+  query += "&" + allInputs[allInputs.length -1].value.trim();
 
   //encoded
   query = encodeCompressed(query);

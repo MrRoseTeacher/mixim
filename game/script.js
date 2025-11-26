@@ -63,7 +63,7 @@ function parseContent(text){
   const raw = text.split("&");
   for(let i=0; i<raw.length; i++){
     //trim out things like topic= and remove + with " "
-    raw[i] = raw[i].replaceAll("+", " ");
+    // raw[i] = raw[i].replaceAll("+", " ");
     
     if(i == 0){
       topic = raw[i];
@@ -107,7 +107,7 @@ function scramble(ar){
 function nextWord(n){
   eid("progress-counter").innerHTML = String(n+1) + "/" + String(totalQuestions);
   eid("description-container").innerHTML = "Description: " + descriptions[n];
-  MathJax.Hub.Typeset();
+  MathJax.Hub.Typeset()
   eid("scrambled-container").innerHTML = "";
   eid("unscrambled-container").innerHTML = "";
   const boxWidth = (window.screen.width - 16 - 32 - (scrambledWords[n].length - 1)*(16))/scrambledWords[n].length;
@@ -121,7 +121,7 @@ function nextWord(n){
 function createLetterBlock(letter, width){
   const node = document.createElement("div");
   node.classList.add("letter-block-filled");
-  node.style.width = width;
+  node.style.width = width + "px";
   node.draggable = true;
   node.ondragstart = dragStartHandler;
   //mobile touch listeners
@@ -135,7 +135,7 @@ function createLetterBlock(letter, width){
 function createEmptyLetterBlock(width){
   const node = document.createElement("div");
   node.classList.add("letter-block-empty");
-  node.style.width = width;
+  node.style.width = width + "px";
   //add drag and touch handlers
   node.ondragover = dragoverHandler;
   node.ondrop = dropHandler;
