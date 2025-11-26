@@ -18,7 +18,7 @@
     "desc8": "A number that indicates how many times a base is multiplied by itself.",
     "word9": "absolute-value",
     "desc9": "The distance of a number from zero on the number line, always non-negative.",
-    "word10": "coordinate plane",
+    "word10": "coordinate",
     "desc10": "Has the form $(x, y)$.",
     "successMsg": "Great job! You’ve reviewed some key math terms."
 }
