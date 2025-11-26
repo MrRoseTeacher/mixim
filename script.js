@@ -130,8 +130,6 @@ eid("gen-mixim").onclick = function(){
   
   //add the success message, trim and replace spaces
   query += "&" + allInputs[allInputs.length -1].value.trim().replaceAll(" ", "+");
-  
-  console.log(query);
 
   //encoded
   query = encodeCompressed(query);
