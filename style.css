@@ -189,6 +189,9 @@ button:active{
   margin-top: -2rem; 
   margin-left: -1.55rem; 
   width: 3rem;
+  height: 3rem;
+  font-size: 1.2rem;
+  line-height: 3rem;
 }
 
 .letter-block-filled, .letter-block-empty {
@@ -203,6 +206,15 @@ button:active{
   background: var(--extraLightBG);
   text-align:center;
   transition: border 0.2s ease-in-out;
+}
+
+@media screen and (max-width: 650px){
+  .letter-block-filled, .letter-block-empty {
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    font-size: 1rem;
+  }
 }
 
 .letter-block-filled{
