@@ -417,7 +417,6 @@ button:active{
   display: flex;
   justify-content: space-between;
   visibility: hidden;
-  display: none;
   opacity: 0;
   transition: opacity var(--opacityDuration) ease-in-out;
 }
@@ -500,6 +499,7 @@ button:active{
   transition: opacity var(--opacityDuration) ease-in-out;
   opacity: 0;
   visibility: hidden;
+  display: none;
 }
 
 .letter-block-container{
