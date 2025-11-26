@@ -688,7 +688,7 @@ button:active{
     color: var(--text);
 }
 
-@media screen and(max-width: 450px){
+@media screen and (max-width: 450px){
   .link-button{
     font-size: 0.8rem;
   }
@@ -701,8 +701,5 @@ button:active{
 
   #flippable-button button{
     width: 7.5rem;
-  }
-  .button-row{
-    justify-content: space-between;
   }
 }
