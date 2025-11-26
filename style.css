@@ -228,7 +228,7 @@ button:active{
     font-size: 1rem;
   }
   .letter-block-container{
-    padding: 0 0.5rem;
+    padding: 0 0.5rem !important;
   }
 }
 
