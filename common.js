@@ -3,7 +3,7 @@ const opacityDuration = 500;
 // Encode with compression + Base64 (URL-safe)
 function encodeCompressed(str) {
   // Compress to Base64
-  let compressed = LZString.compressToBase64(encodeURIComponent(str));
+  let compressed = LZString.compressToBase64(str);
   // Make URL-safe by replacing +, /, =
   return compressed.replace(/\+/g, '-')
                     .replace(/\//g, '_')
@@ -18,7 +18,7 @@ function decodeCompressed(encoded) {
   while (base64.length % 4) {
     base64 += '=';
   }
-  return decodeURIComponent(LZString.decompressFromBase64(base64));
+  return LZString.decompressFromBase64(base64);
 }
 
 function eid(name){
@@ -37,3 +37,15 @@ function showModal(content, duration){
     eid("modal").style.visibility = "hidden";
   }, opacityDuration*2 + duration);
 }
+
+// function count$(string){
+//   let count = 0;
+//   const indices = [];
+//   for(let i=0; i<string.length; i++){
+//     if(string[i] == "$"){
+//       count++;
+//       indices.push(i);
+//     }
+//   }
+//   return [count, indices];
+// }

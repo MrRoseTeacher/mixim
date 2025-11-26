@@ -63,7 +63,7 @@ function parseContent(text){
   const raw = text.split("&");
   for(let i=0; i<raw.length; i++){
     //trim out things like topic= and remove + with " "
-    // raw[i] = raw[i].replaceAll("+", " ");
+    raw[i] = raw[i].replaceAll("~", " ");
     
     if(i == 0){
       topic = raw[i];
