@@ -189,7 +189,10 @@ function checkWord(n){
     }
   }
   else{
-    showModal("Drag one letter onto another to swap. Check your answer again when you are ready.", 5000);
+    if(!swapHint){
+      showModal("Drag one letter onto another to swap. Check your answer again when you are ready.", 5000);
+      swapHint = true;
+    }    
   }
   
   //clear animations
