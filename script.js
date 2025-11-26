@@ -2,7 +2,10 @@
 Builder JS
 */
 
-//handle files
+let guideToggle = false;
+const userGuideHeight = eid("user-guide").clientHeight;
+console.log(userGuideHeight);
+eid("user-guide").style.height = 0;
 
 //creates a key/value pair of the parameters
 const urlParams = new URLSearchParams(window.location.search);
@@ -184,29 +187,20 @@ eid("file-upload").onchange = async function(){
   }
 }
 
-builderOnLoad();
-
-/* TEMP CODE */
-/*
-function popDefault(){
-  eid("add-row").click();
-  eid("add-row").click();
-  const allInputs = document.getElementsByClassName("mixim-input");
-  const initial = [
-    "Words that English borrowed from Indigenous Language",
-    "Sound",
-    "A noise made",
-    "Light",
-    "What your eyes see",
-    "Touch",
-    "What you feel with your fingers",
-    "Congratulations on finishing the game!"
-  ];
-  
-  for(let i=0; i < allInputs.length; i++){
-    allInputs[i].value = initial[i];
+function userGuideToggle(){
+  if(!guideToggle){
+    eid("user-guide-icon").style.transform = "rotate(180deg)";
+    eid("user-guide").style.height = userGuideHeight + "px";
+    guideToggle = !guideToggle;
+  }
+  else{
+    eid("user-guide-icon").style.transform = "";
+    eid("user-guide").style.height = "0px";
+    guideToggle = !guideToggle;
   }
 }
 
-popDefault();
-*/
+eid("user-guide-button").onclick = userGuideToggle;
+eid("user-guide-icon").onclick = userGuideToggle;
+
+builderOnLoad();

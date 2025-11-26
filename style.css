@@ -111,6 +111,39 @@ a:visited{
   transition: opacity var(--opacityDuration) ease-in-out;
 }
 
+#user-guide-container{
+  position:relative;
+  top: -7rem;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+
+.minimal-button{
+  width: 8rem;
+  border: none;
+  font-size: 1.2rem;
+  background: none;
+}
+
+#user-guide-icon{
+  transition: transform 0.3s ease-in-out;
+  padding-top: 6px;
+}
+
+#user-guide{
+  transition: height 0.5s ease-in-out;
+  overflow: hidden;
+}
+
+.minimal-button:active{
+  background: none;
+  color: var(--text);
+}
+
 #main{
   position: relative;
   border-radius: 3px;
