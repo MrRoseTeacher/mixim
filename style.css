@@ -191,7 +191,7 @@ button:active{
 }
 
 .letter-block-filled, .letter-block-empty {
-  width: 3rem;
+  max-width: 3rem;
   height: 3rem;
   line-height: 3rem;
   font-size: 1.2rem;

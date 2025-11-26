@@ -109,17 +109,20 @@ function scramble(ar){
 function nextWord(n){
   eid("progress-counter").innerHTML = String(n+1) + "/" + String(totalQuestions);
   eid("description-container").innerHTML = "Description: " + descriptions[n];
+  MathJax.Hub.Typeset();
   eid("scrambled-container").innerHTML = "";
   eid("unscrambled-container").innerHTML = "";
+  const boxWidth = (window.screen.width - 16 - 32 - (scrambledWords[n].length - 1)*(16))/scrambledWords[n].length;
   for(let i=0; i<scrambledWords[n].length; i++){
-    eid("scrambled-container").append(createLetterBlock(scrambledWords[n][i]));
-    eid("unscrambled-container").append(createEmptyLetterBlock());
+    eid("scrambled-container").append(createLetterBlock(scrambledWords[n][i], boxWidth));
+    eid("unscrambled-container").append(createEmptyLetterBlock(boxWidth));
   }
 }
 
-function createLetterBlock(letter){
+function createLetterBlock(letter, width){
   const node = document.createElement("div");
   node.classList.add("letter-block-filled");
+  node.style.width = width;
   node.draggable = true;
   node.ondragstart = dragStartHandler;
   //mobile touch listeners
@@ -130,9 +133,10 @@ function createLetterBlock(letter){
   return node;
 }
 
-function createEmptyLetterBlock(){
+function createEmptyLetterBlock(width){
   const node = document.createElement("div");
   node.classList.add("letter-block-empty");
+  node.style.width = width;
   //add drag and touch handlers
   node.ondragover = dragoverHandler;
   node.ondrop = dropHandler;
