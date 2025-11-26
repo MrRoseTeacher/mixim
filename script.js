@@ -173,7 +173,7 @@ eid("file-upload").onchange = async function(){
         addRow();
       }
       for(let i=0; i<allInputs.length; i++){
-        allInputs[i].value = miximInfo[i];
+        allInputs[i].value = miximInfo[i].replaceAll("\neq", "\\neq");
       }
     }
 
