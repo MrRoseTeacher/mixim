@@ -111,6 +111,7 @@ function nextWord(n){
   eid("scrambled-container").innerHTML = "";
   eid("unscrambled-container").innerHTML = "";
   const boxWidth = (window.screen.width - 16 - 32 - (scrambledWords[n].length - 1)*(16))/scrambledWords[n].length;
+  console.log(boxWidth);
   for(let i=0; i<scrambledWords[n].length; i++){
     eid("scrambled-container").append(createLetterBlock(scrambledWords[n][i], boxWidth));
     eid("unscrambled-container").append(createEmptyLetterBlock(boxWidth));
