@@ -110,8 +110,7 @@ function nextWord(n){
   MathJax.Hub.Typeset()
   eid("scrambled-container").innerHTML = "";
   eid("unscrambled-container").innerHTML = "";
-  const boxWidth = (window.screen.width - 16 - 32 - (scrambledWords[n].length - 1)*(16))/scrambledWords[n].length;
-  console.log(boxWidth);
+  const boxWidth = (window.innerWidth - 16 - 32 - (scrambledWords[n].length - 1)*(16))/scrambledWords[n].length;
   for(let i=0; i<scrambledWords[n].length; i++){
     eid("scrambled-container").append(createLetterBlock(scrambledWords[n][i], boxWidth));
     eid("unscrambled-container").append(createEmptyLetterBlock(boxWidth));
@@ -363,10 +362,10 @@ function resetModalStyle(){
 }
 
 function altStyleModal(){
-  if(window.screen.width >= 651 && window.screen.width <= 850){
+  if(window.innerWidth >= 651 && window.innerWidth <= 850){
     eid("modal").style.top = "300px";
   }
-  else if(window.screen.width > 850){
+  else if(window.innerWidth > 850){
     eid("modal").style.top = "380px";
   }
   else{
