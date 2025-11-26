@@ -115,6 +115,7 @@ function nextWord(n){
     eid("scrambled-container").append(createLetterBlock(scrambledWords[n][i]));
     eid("unscrambled-container").append(createEmptyLetterBlock());
   }
+  eid("page-container").style.height = eid("page-container").clientHeight - 8*16 + "px";
 }
 
 function createLetterBlock(letter){
@@ -327,6 +328,7 @@ eid("start-game").onclick = function(){
     eid("subtitle").classList.add("move-body-up");
     eid("flippable-button-container").style.visibility = "visible";
     eid("flippable-button-container").classList.add("move-body-up");
+    eid("page-container").style.height = eid("page-container").clientHeight - 8*16 + "px";
     toggleGameContainer();
     startTimer();
   }, opacityDuration);
