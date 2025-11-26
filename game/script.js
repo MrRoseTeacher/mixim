@@ -318,6 +318,9 @@ eid("start-game").onclick = function(){
   eid("main").style.opacity = 0;
   setTimeout(function(){
     eid("main").style.display = "none";
+    eid("subtitle").style.display = "block";
+    eid("gameplay-container").style.display = "block";
+    eid("flippable-button-container").style.display = "block";
     eid("menu-bar").style.visibility = "visible";
     eid("menu-bar").style.opacity = 1;
     eid("subtitle").style.visibility = "visible";

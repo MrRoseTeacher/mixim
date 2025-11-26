@@ -417,6 +417,7 @@ button:active{
   display: flex;
   justify-content: space-between;
   visibility: hidden;
+  display: none;
   opacity: 0;
   transition: opacity var(--opacityDuration) ease-in-out;
 }
@@ -473,6 +474,7 @@ button:active{
 #gameplay-container{
   position: relative;
   visibility: hidden;
+  display: none;
   opacity: 0;
   transition: opacity var(--opacityDuration) ease-in-out;
 }
@@ -575,6 +577,7 @@ button:active{
   opacity: 0;
   visibility: hidden;
   perspective: 800px;
+  display: none;
 }
 
 #flippable-button{
