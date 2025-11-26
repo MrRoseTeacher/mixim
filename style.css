@@ -687,3 +687,22 @@ button:active{
     background: var(--lightGreyBG);
     color: var(--text);
 }
+
+@media screen and(max-width: 450px){
+  .link-button{
+    font-size: 0.8rem;
+  }
+  #timer-button{
+    padding-top: 0.45rem;
+  }
+  #flippable-button{
+    width: 7.5rem;
+  }
+
+  #flippable-button button{
+    width: 7.5rem;
+  }
+  .button-row{
+    justify-content: space-between;
+  }
+}
