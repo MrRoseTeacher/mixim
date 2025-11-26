@@ -379,7 +379,7 @@ function altStyleModal(){
     eid("modal").style.top = "420px";
   }
   eid("modal").style.border = "none";
-  eid("modal").style.background = "none";
+  eid("modal").style.background = "var(--extraLightBG)";
   eid("modal").style.color = "var(--text";
   eid("modal").style.boxShadow = "none";
   eid("modal").style.fontWeight = "700";
