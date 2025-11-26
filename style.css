@@ -208,6 +208,18 @@ button:active{
   transition: border 0.2s ease-in-out;
 }
 
+.letter-block-container{
+  position: relative;
+  padding: 0 1rem;
+  display: flex;
+  gap:1rem;
+  justify-content: center;
+  margin: 2rem 0;
+  min-height: 3rem;
+  margin-bottom: 4rem;
+  flex-wrap: wrap;
+}
+
 @media screen and (max-width: 650px){
   .letter-block-filled, .letter-block-empty {
     width: 2rem;
@@ -519,18 +531,6 @@ button:active{
   opacity: 0;
   visibility: hidden;
   display: none;
-}
-
-.letter-block-container{
-  position: relative;
-  padding: 0 1rem;
-  display: flex;
-  gap:1rem;
-  justify-content: center;
-  margin: 2rem 0;
-  min-height: 3rem;
-  margin-bottom: 4rem;
-  flex-wrap: wrap;
 }
 
 .move-body-up{
