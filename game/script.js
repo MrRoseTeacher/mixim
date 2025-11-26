@@ -110,17 +110,17 @@ function nextWord(n){
   MathJax.Hub.Typeset()
   eid("scrambled-container").innerHTML = "";
   eid("unscrambled-container").innerHTML = "";
-  const boxWidth = (window.innerWidth - 16 - 32 - (scrambledWords[n].length - 1)*(16))/scrambledWords[n].length;
+  // const boxWidth = (window.innerWidth - 16 - 32 - (scrambledWords[n].length - 1)*(16))/scrambledWords[n].length;
   for(let i=0; i<scrambledWords[n].length; i++){
-    eid("scrambled-container").append(createLetterBlock(scrambledWords[n][i], boxWidth));
-    eid("unscrambled-container").append(createEmptyLetterBlock(boxWidth));
+    eid("scrambled-container").append(createLetterBlock(scrambledWords[n][i]));
+    eid("unscrambled-container").append(createEmptyLetterBlock());
   }
 }
 
-function createLetterBlock(letter, width){
+function createLetterBlock(letter){
   const node = document.createElement("div");
   node.classList.add("letter-block-filled");
-  node.style.width = width + "px";
+  // node.style.width = width + "px";
   node.draggable = true;
   node.ondragstart = dragStartHandler;
   //mobile touch listeners
@@ -131,10 +131,10 @@ function createLetterBlock(letter, width){
   return node;
 }
 
-function createEmptyLetterBlock(width){
+function createEmptyLetterBlock(){
   const node = document.createElement("div");
   node.classList.add("letter-block-empty");
-  node.style.width = width + "px";
+  // node.style.width = width + "px";
   //add drag and touch handlers
   node.ondragover = dragoverHandler;
   node.ondrop = dropHandler;

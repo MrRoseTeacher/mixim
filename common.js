@@ -3,22 +3,19 @@ const opacityDuration = 500;
 // Encode with compression + Base64 (URL-safe)
 function encodeCompressed(str) {
   // Compress to Base64
-  let compressed = LZString.compressToBase64(str);
+  let compressed = encodeURIComponent(LZString.compressToBase64(str));
   // Make URL-safe by replacing +, /, =
-  return compressed.replace(/\+/g, '-')
-                    .replace(/\//g, '_')
-                    .replace(/=+$/, '');
+  return compressed;
 }
 
 // Decode back to original
 function decodeCompressed(encoded) {
   // Restore Base64 padding and symbols
-  let base64 = encoded.replace(/-/g, '+')
-                      .replace(/_/g, '/');
+  let base64 = encoded
   while (base64.length % 4) {
     base64 += '=';
   }
-  return LZString.decompressFromBase64(base64);
+  return decodeURIComponent(LZString.decompressFromBase64(base64));
 }
 
 function eid(name){
