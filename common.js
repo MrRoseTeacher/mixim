@@ -34,15 +34,3 @@ function showModal(content, duration){
     eid("modal").style.visibility = "hidden";
   }, opacityDuration*2 + duration);
 }
-
-// function count$(string){
-//   let count = 0;
-//   const indices = [];
-//   for(let i=0; i<string.length; i++){
-//     if(string[i] == "$"){
-//       count++;
-//       indices.push(i);
-//     }
-//   }
-//   return [count, indices];
-// }

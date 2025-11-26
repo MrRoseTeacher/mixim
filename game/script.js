@@ -359,6 +359,8 @@ function resetModalStyle(){
   eid("modal").style.background = "var(--lightBG)";
   eid("modal").style.color = "var(--text)";
   eid("modal").style.padding = "2rem";
+  eid("modal").style.boxShadow = "0px 10px 10px -6px var(--medLightGrey), 0px -10px 10px -6px var(--medLightGrey), -10px 0px 10px -6px var(--medLightGrey), 10px 0px 10px -6px var(--medLightGrey)";
+  eid("modal").style.fontWeight = "400";
 }
 
 function altStyleModal(){
@@ -372,8 +374,10 @@ function altStyleModal(){
     eid("modal").style.top = "420px";
   }
   eid("modal").style.border = "none";
-  eid("modal").style.background = "var(--darkGrey)";
-  eid("modal").style.color = "var(--extraLightBG)";
+  eid("modal").style.background = "none";
+  eid("modal").style.color = "var(--text";
+  eid("modal").style.boxShadow = "none";
+  eid("modal").style.fontWeight = "700";
   eid("modal").style.padding = "1rem";
 }
 
