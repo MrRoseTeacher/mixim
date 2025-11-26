@@ -291,6 +291,10 @@ button:active{
     width: 27rem;
     left: calc((100vw - 27rem) / 2);
   }
+  #modal{
+    width: 25rem;
+    left: calc((100vw - 25rem) / 2);
+  }
 }
 
 @media screen and (min-width: 851px){

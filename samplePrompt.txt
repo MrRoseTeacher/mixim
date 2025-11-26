@@ -1,0 +1,28 @@
+SAMPLE PROMPT (Replace ## and words in CAPS)
+Hello, I have a game shell created and I'd like your help generating content for the game. In the attached file, you can see the formatting. There needs to be a topic, pairs of words and descriptions/definitions, and a success message. It's important that the data file includes the information in that order. To be more specific with the words that are paired with the descriptions/definitions, please make sure that they are single words. Ideally, the words are less than 9 characters in length to avoid a line break on mobile phones.
+
+Please generate a json file for me containing ## word/description pairs about TOPIC. INCLUDE ANY SPECIFIC NOTES.
+
+The application uses UTF-8 characters, so if you need any symbols from other languages please use that formatting. If the content is math related, you may also use appropriate MathJax in the descriptions. Please note that the text will be imported into an input HTML tag, so please use escape characters in your MathJax code (such as \\neq instead of \neq).
+
+
+FRENCH PROMPT
+Hello, I have a game shell created and I'd like your help generating content for the game. In the attached file, you can see the formatting. There needs to be a topic, pairs of words and descriptions/definitions, and a success message. It's important that the data file includes the information in that order. To be more specific with the words that are paired with the descriptions/definitions, please make sure that they are single words. Ideally, the words are less than 9 characters in length to avoid a line break on mobile phones.
+
+Please generate a json file for me containing 7 word/description pairs about words that are tricky to spell in French. The descriptions should be the definitions of these words. All of the words should be in French and there should be no English.
+
+The application uses UTF-8 characters, so if you need any symbols from other languages please use that formatting. If the content is math related, you may also use appropriate MathJax in the descriptions. Please note that the text will be imported into an input HTML tag, so please use escape characters in your MathJax code (such as \\neq instead of \neq).
+
+ENGLISH AND INDIGENOUS LANGUAGE PROMPT
+Hello, I have a game shell created and I'd like your help generating content for the game. In the attached file, you can see the formatting. There needs to be a topic, pairs of words and descriptions/definitions, and a success message. It's important that the data file includes the information in that order. To be more specific with the words that are paired with the descriptions/definitions, please make sure that they are single words. Ideally, the words are less than 9 characters in length to avoid a line break on mobile phones.
+
+Please generate a json file for me containing 7 word/description pairs about English words and place names that we use in Canada that are derived from Indigenous language. At the end of each description, please write, using brackets, which Indigenous community the word came from. Please limit the number of place names to 3.
+
+The application uses UTF-8 characters, so if you need any symbols from other languages please use that formatting. If the content is math related, you may also use appropriate MathJax in the descriptions. Please note that the text will be imported into an input HTML tag, so please use escape characters in your MathJax code (such as \\neq instead of \neq).
+
+MATH PROMPT 
+Hello, I have a game shell created and I'd like your help generating content for the game. In the attached file, you can see the formatting. There needs to be a topic, pairs of words and descriptions/definitions, and a success message. It's important that the data file includes the information in that order. To be more specific with the words that are paired with the descriptions/definitions, please make sure that they are single words. Ideally, the words are less than 9 characters in length to avoid a line break on mobile phones.
+
+Please generate a json file for me containing 10 word/description pairs about math terms that would be found in early High School courses.
+
+The application uses UTF-8 characters, so if you need any symbols from other languages please use that formatting. If the content is math related, you may also use appropriate MathJax in the descriptions. Please note that the text will be imported into an input HTML tag, so please use escape characters in your MathJax code (such as \\neq instead of \neq).
