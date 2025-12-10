@@ -178,6 +178,9 @@ function checkWord(n){
       currentBlock.classList.add("correct");
       currentBlock.classList.add("correct-animation");
       currentBlock.draggable = false;
+      currentBlock.removeEventListener("touchstart", touchStartHandler, { passive: false });
+      currentBlock.removeEventListener("touchmove", touchMoveHandler, { passive: false });
+      currentBlock.removeEventListener("touchend", touchEndHandler, { passive: false });
     }
     else{
       currentBlock.classList.add("incorrect");
@@ -221,11 +224,6 @@ function checkWord(n){
 //drag and drop CHROME
 function dragStartHandler(e){
   currentDrag = e.target;
-  // console.log(e.target);
-  // if(e.target.nodeType == Node.TEXT_NODE && e.target.parentNode.classList.contains("letter-block-filled")){
-  //   console.log("error!");
-  //   currentDrag = e.target.parentNode;
-  // }
   currentDragParent = e.target.parentNode;
   console.log("target");
   console.log(e.target);
@@ -270,9 +268,7 @@ function dropHandler(e){
 //Add enlarged zones and ability to drag back to unscrambled container
 function touchStartHandler(e) {
   currentDrag = e.target;
-  if(e.target.parentNode != eid("scrambled-container")){
-    currentDragParent = e.target.parentNode;
-  }
+  currentDragParent = e.target.parentNode;
   //reduce opacity for visual feedback
   e.target.style.opacity = "0.6"; 
 }
@@ -294,15 +290,21 @@ function touchEndHandler(e) {
   const touch = e.changedTouches[0];  //corresponds to the movement of the first finger
   let target = document.elementFromPoint(touch.clientX, touch.clientY);
   if (currentDrag) {
-      if(target.classList.contains("letter-block-filled") && target.parentNode != eid("title")){
-          //element is occupied by a current draggable object
-          let newTarget = target.parentNode;
-          currentDragParent.append(target);
-          newTarget.append(currentDrag);
-      }
-      else if(target.classList.contains("letter-block-empty")){
-          target.append(currentDrag);
-      }
+    if(target.classList.contains("letter-block-filled") && target.parentNode != eid("title")){
+      //element is occupied by a current draggable object
+      let newTarget = target.parentNode;
+      currentDragParent.append(target);
+      newTarget.append(currentDrag);
+    }
+    else if(target.classList.contains("letter-block-empty")){
+      target.append(currentDrag);
+    }
+    else if(target.classList.contains("drag-target")){
+      determineDropContainer(currentDrag, target.firstChild);
+    }
+    else if(target.id == "scrambled-container"){
+      target.append(currentDrag);
+    }
   }
 
   if (currentDrag) {
