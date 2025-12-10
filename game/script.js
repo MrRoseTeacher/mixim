@@ -158,6 +158,11 @@ function checkWord(n){
   const lettersFilledArray = eid("unscrambled-container").getElementsByClassName("letter-block-filled");
   const lettersFilled = lettersFilledArray.length;
   
+    //start check. Check if there are empties first
+  if(correctWord.length > lettersFilled){
+    showModal("You must first use all of the letters.", 2000, true);
+    return;
+  }
   //clear any previous correct or incorrect classes
   for(let i=0; i<lettersFilled; i++){
     if(lettersFilledArray[i].classList.contains("correct")){
@@ -167,16 +172,12 @@ function checkWord(n){
       lettersFilledArray[i].classList.remove("incorrect");
     }
   }
-  //start check. Check if there are empties first
-  if(correctWord.length > lettersFilled){
-    showModal("You must first use all of the letters", 2000, true);
-    return;
-  }
   for(let i=0; i< guessArray.length; i++){
     const currentBlock = guessArray[i].firstChild;
     if(currentBlock.innerHTML == correctWord[i]){
       currentBlock.classList.add("correct");
       currentBlock.classList.add("correct-animation");
+      currentBlock.draggable = false;
     }
     else{
       currentBlock.classList.add("incorrect");
@@ -226,6 +227,10 @@ function dragStartHandler(e){
   //   currentDrag = e.target.parentNode;
   // }
   currentDragParent = e.target.parentNode;
+  console.log("target");
+  console.log(e.target);
+  console.log("parent");
+  console.log(currentDragParent);
 }
 
 function dragoverHandler(e){
@@ -245,6 +250,8 @@ function determineDropContainer(item, target){
 
 function dropHandler(e){
   e.preventDefault();
+  console.log("Drop Target");
+  console.log(e.target);
   if(e.target.classList.contains("letter-block-empty") || e.target.classList.contains("letter-block-filled")){
     determineDropContainer(currentDrag, e.target);
   }
@@ -253,7 +260,8 @@ function dropHandler(e){
   }
   else if(e.target.id == "scrambled-container" || e.target.parentNode.id == "scrambled-container"){
     eid("scrambled-container").append(currentDrag);
-  }  
+  }
+  console.log(eid("unscrambled-container").getElementsByClassName("letter-block-empty"));  
   currentDrag = null;
   currentDragParent = null;
 }
