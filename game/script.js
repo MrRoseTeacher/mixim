@@ -115,7 +115,7 @@ function nextWord(n){
   // const boxWidth = (window.innerWidth - 16 - 32 - (scrambledWords[n].length - 1)*(16))/scrambledWords[n].length;
   for(let i=0; i<scrambledWords[n].length; i++){
     eid("scrambled-container").append(createLetterBlock(scrambledWords[n][i]));
-    const node = dragTarget();
+    const node = createDragTarget();
     eid("unscrambled-container").append(node);
     node.append(createEmptyLetterBlock());
   }
@@ -220,34 +220,42 @@ function checkWord(n){
 //drag and drop CHROME
 function dragStartHandler(e){
   currentDrag = e.target;
-  if(e.target.parentNode != eid("scrambled-container")){
-    currentDragParent = e.target.parentNode;
-  }
+  console.log(e.target);
+  currentDragParent = e.target.parentNode;
 }
 
 function dragoverHandler(e){
   e.preventDefault();
 }
 
-function dropHandler(e){
-  e.preventDefault();
-  if(e.target.firstChild){
-    //element is occupied by a current draggable object. 
-    //target = dragTarget, firstChild1 = empty letter block?
-    //might need an else if depending on what comes up as 'target'
-    //might need another else if for dragging back to the scrambled container. Will also need to add the correct handler.
-    let newTarget = e.target.parentNode;
-    currentDragParent.append(e.target);
-    newTarget.append(currentDrag);
+function determineDropContainer(item, target){
+  if(target.firstChild){
+    let newTarget = target.parentNode;
+    currentDragParent.append(target);
+    newTarget.append(item);
   }
   else{
-    e.target.append(currentDrag);
+    target.append(item);
   }
+}
+
+function dropHandler(e){
+  e.preventDefault();
+  if(e.target.classList.contains("letter-block-empty") || e.target.classList.contains("letter-block-filled")){
+    determineDropContainer(currentDrag, e.target);
+  }
+  else if(e.target.classList.contains("drag-target")){
+    determineDropContainer(currentDrag, e.target.firstChild);
+  }
+  else if(e.target.id == "scrambled-container" || e.target.parentNode.id == "scrambled-container"){
+    eid("scrambled-container").append(currentDrag);
+  }  
   currentDrag = null;
   currentDragParent = null;
 }
 
 //drag and drop MOBILE
+//Add enlarged zones and ability to drag back to unscrambled container
 function touchStartHandler(e) {
   currentDrag = e.target;
   if(e.target.parentNode != eid("scrambled-container")){
@@ -404,11 +412,15 @@ function altStyleModal(){
   eid("modal").style.padding = "1rem";
 }
 
-parseContent(decoded);
-setTimeout(function(){
-    eid("main").style.opacity = 1;
-    eid("main").style.top = "-240px";
-    eid("main").classList.remove("move-main-up");
-}, 3500);
-eid("remix-link").href = remixLink;
-nextWord(0);
+window.onload = function(){
+  parseContent(decoded);
+  setTimeout(function(){
+      eid("main").style.opacity = 1;
+      eid("main").style.top = "-240px";
+      eid("main").classList.remove("move-main-up");
+  }, 3500);
+  eid("remix-link").href = remixLink;
+  eid("scrambled-container").ondragover = dragoverHandler;
+  eid("scrambled-container").ondrop = dropHandler;
+  nextWord(0);
+}
