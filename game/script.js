@@ -250,7 +250,10 @@ function dropHandler(e){
   e.preventDefault();
   console.log("Drop Target");
   console.log(e.target);
-  if(e.target.classList.contains("letter-block-empty") || e.target.classList.contains("letter-block-filled")){
+  if(e.target.classList.contains("correct") || e.target.firstChild.firstChild.classList.contains("correct")){
+    //do nothing. should not swap
+  }
+  else if(e.target.classList.contains("letter-block-empty") || e.target.classList.contains("letter-block-filled")){
     determineDropContainer(currentDrag, e.target);
   }
   else if(e.target.classList.contains("drag-target")){
@@ -290,7 +293,10 @@ function touchEndHandler(e) {
   const touch = e.changedTouches[0];  //corresponds to the movement of the first finger
   let target = document.elementFromPoint(touch.clientX, touch.clientY);
   if (currentDrag) {
-    if(target.classList.contains("letter-block-filled") && target.parentNode != eid("title")){
+    if(target.classList.contains("correct") || target.firstChild.firstChild.classList.contains("correct")){
+      //do nothing. should not swap
+    }
+    else if(target.classList.contains("letter-block-filled") && target.parentNode != eid("title")){
       //element is occupied by a current draggable object
       let newTarget = target.parentNode;
       currentDragParent.append(target);
