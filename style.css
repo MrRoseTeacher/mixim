@@ -34,6 +34,10 @@
 
 body{
   background: var(--lightBG);
+  /* Prevent text from being selected and dragged into the boxes creating errors */
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari, Chrome, Opera */
+  user-select: none;
 }
 
 a{

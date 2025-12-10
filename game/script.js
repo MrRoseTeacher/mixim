@@ -220,7 +220,11 @@ function checkWord(n){
 //drag and drop CHROME
 function dragStartHandler(e){
   currentDrag = e.target;
-  console.log(e.target);
+  // console.log(e.target);
+  // if(e.target.nodeType == Node.TEXT_NODE && e.target.parentNode.classList.contains("letter-block-filled")){
+  //   console.log("error!");
+  //   currentDrag = e.target.parentNode;
+  // }
   currentDragParent = e.target.parentNode;
 }
 
