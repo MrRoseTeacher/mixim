@@ -250,7 +250,7 @@ function dropHandler(e){
   e.preventDefault();
   console.log("Drop Target");
   console.log(e.target);
-  if(e.target.classList.contains("correct") || (e.target.firstChild.firstChild != null && e.target.firstChild.firstChild.classList.contains("correct"))){
+  if(e.target.classList.contains("correct") || (e.target.firstChild != null && e.target.firstChild.firstChild != null && e.target.firstChild.firstChild.classList.contains("correct"))){
     //do nothing. should not swap
   }
   else if(e.target.classList.contains("letter-block-empty") || e.target.classList.contains("letter-block-filled")){
@@ -293,7 +293,7 @@ function touchEndHandler(e) {
   const touch = e.changedTouches[0];  //corresponds to the movement of the first finger
   let target = document.elementFromPoint(touch.clientX, touch.clientY);
   if (currentDrag) {
-    if(target.classList.contains("correct") || (target.firstChild.firstChild != null && target.firstChild.firstChild.classList.contains("correct"))){
+    if(target.classList.contains("correct") || (target.firstChild != null && target.firstChild.firstChild != null && target.firstChild.firstChild.classList.contains("correct"))){
       //do nothing. should not swap
     }
     else if(target.classList.contains("letter-block-filled") && target.parentNode != eid("title")){
