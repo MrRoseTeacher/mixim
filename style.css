@@ -276,6 +276,16 @@ button:active{
   flex-wrap: wrap;
 }
 
+#unscrambled-container{
+  gap: 0;
+  margin: 1.5rem 0 3.5rem 0;
+}
+
+.drag-target{
+  width: 4rem;
+  height: 4rem;
+}
+
 @media screen and (max-width: 650px){
   .letter-block-filled, .letter-block-empty {
     width: 2rem;
