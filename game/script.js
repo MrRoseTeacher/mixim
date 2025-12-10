@@ -28,6 +28,7 @@ let seconds = -1;
 let preseconds;
 let gameInterval;
 let swapHint = false;
+let initialState;
 
 function startTimer(){
   gameInterval = setInterval(function(){
@@ -114,9 +115,12 @@ function nextWord(n){
   // const boxWidth = (window.innerWidth - 16 - 32 - (scrambledWords[n].length - 1)*(16))/scrambledWords[n].length;
   for(let i=0; i<scrambledWords[n].length; i++){
     eid("scrambled-container").append(createLetterBlock(scrambledWords[n][i]));
-    eid("unscrambled-container").append(createEmptyLetterBlock());
+    const node = dragTarget();
+    eid("unscrambled-container").append(node);
+    node.append(createEmptyLetterBlock());
   }
   eid("page-container").style.height = eid("page-container").clientHeight - 8*16 + "px";
+  initialState = eid("gameplay-container").innerHTML;
 }
 
 function createLetterBlock(letter){
@@ -133,13 +137,17 @@ function createLetterBlock(letter){
   return node;
 }
 
+function createDragTarget(){
+  const node = document.createElement("div");
+  node.classList.add("drag-target");
+  node.ondragover = dragoverHandler;
+  node.ondrop = dropHandler;
+  return node;
+}
+
 function createEmptyLetterBlock(){
   const node = document.createElement("div");
   node.classList.add("letter-block-empty");
-  // node.style.width = width + "px";
-  //add drag and touch handlers
-  node.ondragover = dragoverHandler;
-  node.ondrop = dropHandler;
   return node;
 }
 
@@ -161,7 +169,7 @@ function checkWord(n){
   }
   //start check. Check if there are empties first
   if(correctWord.length > lettersFilled){
-    showModal("You must first use all of the letters", 2000);
+    showModal("You must first use all of the letters", 2000, true);
     return;
   }
   for(let i=0; i< guessArray.length; i++){
@@ -224,7 +232,10 @@ function dragoverHandler(e){
 function dropHandler(e){
   e.preventDefault();
   if(e.target.firstChild){
-    //element is occupied by a current draggable object
+    //element is occupied by a current draggable object. 
+    //target = dragTarget, firstChild1 = empty letter block?
+    //might need an else if depending on what comes up as 'target'
+    //might need another else if for dragging back to the scrambled container. Will also need to add the correct handler.
     let newTarget = e.target.parentNode;
     currentDragParent.append(e.target);
     newTarget.append(currentDrag);
