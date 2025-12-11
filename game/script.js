@@ -20,7 +20,10 @@ let currentQuestion = 0;
 let currentDrag;
 let currentDragParent;
 const builderURL = "https://mrroseteacher.github.io/mixim/";
-const remixLink = builderURL + window.location.search;
+let remixLink = builderURL + window.location.search;
+if(window.location.search == ""){
+  remixLink = builderURL + "?data=" + encodeCompressed(decoded);
+}
 let gameContainerVisible = false;
 let firstGame = true;
 let minutes = 0;
