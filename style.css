@@ -283,13 +283,13 @@ button:active{
 
 #unscrambled-container{
   gap: 0;
-  margin: 1.5rem 0 3.5rem 0;
+  margin: 1.5rem 0 2rem 0;
 }
 
 .drag-target{
   width: 4rem;
-  height: 4rem;
-  padding: 0.5rem;
+  height: 5.5rem;
+  padding: 0.5rem 0.5rem 2rem 0.5rem;
 }
 
 @media screen and (max-width: 650px){
@@ -305,13 +305,12 @@ button:active{
   }
   #unscrambled-container{
     gap: 0;
-    margin: 1.65rem 0 3.5rem 0;
+    margin: 1.65rem 0 2rem 0;
   }
-  
   .drag-target{
     width: 2.7rem;
-    height: 2.85rem;
-    padding: 0.35rem 0.35rem 0.5rem 0.35rem;
+    height: 4.35rem;
+    padding: 0.35rem 0.35rem 2rem 0.35rem;
   }
 }
 
