@@ -292,6 +292,8 @@ function touchMoveHandler(e) {
 function touchEndHandler(e) {
   const touch = e.changedTouches[0];  //corresponds to the movement of the first finger
   let target = document.elementFromPoint(touch.clientX, touch.clientY);
+  console.log("touch end target");
+  console.log(target);
   if (currentDrag) {
     if(target.classList.contains("correct") || (target.firstChild != null && target.firstChild.firstChild != null && target.firstChild.firstChild.classList.contains("correct"))){
       //do nothing. should not swap
