@@ -241,7 +241,7 @@ function dragoverHandler(e){
 function determineDropContainer(item, target){
   if(target.firstChild){
     let newTarget = target.parentNode;
-    currentDragParent.append(target);
+    currentDragParent.append(newTarget);
     newTarget.append(item);
   }
   else{
