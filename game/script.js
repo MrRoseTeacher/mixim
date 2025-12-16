@@ -264,7 +264,6 @@ function dropHandler(e){
   console.log("Drop Target");
   console.log(e.target);
   if(e.target.id == "scrambled-container"){
-
     eid("scrambled-container").append(currentDrag);
   }
   //check drop on correct letter... or dragtarget containing correct letter
@@ -321,7 +320,10 @@ function touchEndHandler(e) {
   console.log("touch end target");
   console.log(target);
   if (currentDrag) {
-    if(target.classList.contains("correct") || (target.firstChild != null && target.firstChild.firstChild != null && target.firstChild.firstChild.classList.contains("correct"))){
+    if(target.id == "scrambled-container"){
+      target.append(currentDrag);
+    }
+    else if(target.classList.contains("correct") || (target.firstChild != null && target.firstChild.firstChild != null && target.firstChild.firstChild.classList.contains("correct"))){
       //do nothing. should not swap
     }
     else if(target.classList.contains("letter-block-filled") && target.parentNode != eid("title")){
@@ -335,9 +337,6 @@ function touchEndHandler(e) {
     }
     else if(target.classList.contains("drag-target")){
       determineDropContainer(currentDrag, target.firstChild);
-    }
-    else if(target.id == "scrambled-container"){
-      target.append(currentDrag);
     }
   }
 
