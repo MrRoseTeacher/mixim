@@ -238,11 +238,21 @@ function dragoverHandler(e){
   e.preventDefault();
 }
 
-function determineDropContainer(item, target){
-  if(target.firstChild){
-    let newTarget = target.parentNode;
-    currentDragParent.append(newTarget);
-    newTarget.append(item);
+function determineDropContainer(item, target, scrambledTarget = null){
+  if(target.id == "scrambled-container"){
+    if(scrambledTarget){
+      target.append(item);
+      currentDragParent.append(scrambledTarget);
+    }
+    else{
+      target.append(item);
+    }
+  }
+  else if(target.firstChild){
+    // let newTarget = target.parentNode;
+    currentDragParent.append(target.firstChild);
+    target.append(item);
+    //will get into this code block
   }
   else{
     target.append(item);
@@ -253,19 +263,32 @@ function dropHandler(e){
   e.preventDefault();
   console.log("Drop Target");
   console.log(e.target);
-  if(e.target.classList.contains("correct") || (e.target.firstChild != null && e.target.firstChild.firstChild != null && e.target.firstChild.firstChild.classList.contains("correct"))){
-    //do nothing. should not swap
-  }
-  else if(e.target.classList.contains("letter-block-empty") || e.target.classList.contains("letter-block-filled")){
-    determineDropContainer(currentDrag, e.target);
-  }
-  else if(e.target.classList.contains("drag-target")){
-    determineDropContainer(currentDrag, e.target.firstChild);
-  }
-  else if(e.target.id == "scrambled-container" || e.target.parentNode.id == "scrambled-container"){
+  if(e.target.id == "scrambled-container"){
+
     eid("scrambled-container").append(currentDrag);
   }
-  console.log(eid("unscrambled-container").getElementsByClassName("letter-block-empty"));  
+  //check drop on correct letter... or dragtarget containing correct letter
+  else if(e.target.classList.contains("correct") || (e.target.firstChild != null && e.target.firstChild.firstChild != null && e.target.firstChild.firstChild.classList.contains("correct"))){
+    //do nothing. should not swap
+  }
+  else if(e.target.classList.contains("letter-block-empty")){
+    determineDropContainer(currentDrag, e.target);
+  }
+  else if(e.target.classList.contains("letter-block-filled")){
+    if(e.target.parentNode.id == "scrambled-container"){
+      determineDropContainer(currentDrag, e.target.parentNode, e.target);
+    }
+    else{
+      determineDropContainer(currentDrag, e.target.parentNode);
+    }
+  }
+  else if(e.target.classList.contains("drag-target")){
+    console.log(e.target.firstChild);
+    determineDropContainer(currentDrag, e.target.firstChild);
+    //currentParent is scrambled-container should append the letter block filled class
+    //sending current filled block and empty letter block inside of the drag-Target
+  }
+  // console.log(eid("unscrambled-container").getElementsByClassName("letter-block-empty"));  
   currentDrag = null;
   currentDragParent = null;
 }
