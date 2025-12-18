@@ -9,16 +9,6 @@ let userGuideHeight;
 const urlParams = new URLSearchParams(window.location.search);
 //access the 'data'
 const encoded = urlParams.get('data');
-//decode the URI (url safe) encoding
-if(encoded){
-  const decoded = decodeCompressed(encoded);
-  const raw = decoded.split("&");
-  const pairsToAdd = (raw.length - 4) / 2;
-  for(let i=0; i<pairsToAdd; i++){
-    addRow();
-  }
-  populateRemix(raw);
-}
 
 function populateRemix(ar){
   const allInputs = document.getElementsByClassName("mixim-input");
@@ -92,6 +82,22 @@ function addRow(){
 
 //code to run when builder page loads
 function builderOnLoad(){
+  //decode the URI (url safe) encoding
+  if(encoded){
+    let decoded = decodeCompressed(encoded);
+    if(isSafe(decoded)){
+      const raw = decoded.split("&");
+      const pairsToAdd = (raw.length - 4) / 2;
+      for(let i=0; i<pairsToAdd; i++){
+        addRow();
+      }
+      populateRemix(raw);
+    }
+    else{
+      showModal("Error: Invalid game data detected.<br>Data was not imported for remix.", 5000);
+    }
+  }
+
   //add event listener to first delete button
   document.getElementsByClassName("delete-row")[0].onclick = deleteRow;
   //add event listener for addrow
@@ -135,24 +141,29 @@ eid("gen-mixim").onclick = function(){
   //add the success message, trim and replace spaces
   query += "&" + allInputs[allInputs.length -1].value.trim().replaceAll(" ", "~");
 
-  //encoded
-  query = encodeCompressed(query);
+  if(isSafe(query)){
+    //encoded
+    query = encodeCompressed(query);
 
-  const domain = "https://mrroseteacher.github.io/mixim/game/";
-  const fullURL = domain + "?data=" + query
-  
-  //populate the link box below
-  const link = document.createElement("a");
-  link.innerHTML = fullURL;
-  link.href = fullURL;
-  link.target = "_blank";
-  eid("copy-link").parentNode.insertBefore(link, eid("copy-link"));
-  eid("mixim-link").style.visibility = "visible";
-  
-  eid("copy-link").onclick = function(){
-    navigator.clipboard.writeText(link.innerHTML);
-    showModal("Mixim link copied to clipboard", 3000);
+    const domain = "https://mrroseteacher.github.io/mixim/game/";
+    const fullURL = domain + "?data=" + query
+    
+    //populate the link box below
+    const link = document.createElement("a");
+    link.innerHTML = fullURL;
+    link.href = fullURL;
+    link.target = "_blank";
+    eid("copy-link").parentNode.insertBefore(link, eid("copy-link"));
+    eid("mixim-link").style.visibility = "visible";
+    
+    eid("copy-link").onclick = function(){
+      navigator.clipboard.writeText(link.innerHTML);
+      showModal("Mixim link copied to clipboard", 3000);
+    }
   }
+  else{
+    showModal("Error: Invalid game data detected.<br>Link was not generated.", 5000);
+  }  
 }
 
 eid("upload").onclick = function(){

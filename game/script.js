@@ -460,6 +460,13 @@ function altStyleModal(){
 }
 
 window.onload = function(){
+  decoded = "<script>";
+  if (!isSafe(decoded)) {
+    // Abort game loading
+    eid("main").style.display = "none";
+    showModal("Error: Invalid game data detected.<br>Please try another Mixim game link.", 10000);
+    return;
+  }
   parseContent(decoded);
   setTimeout(function(){
       eid("main").style.opacity = 1;

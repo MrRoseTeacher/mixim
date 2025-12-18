@@ -19,6 +19,24 @@ function decodeCompressed(encoded) {
   return decodeURIComponent(LZString.decompressFromBase64(base64));
 }
 
+
+function isSafe(decoded) {
+  const dangerousPatterns = [
+      "<script", "</script>", "onerror=", "onload=", "javascript:",
+      "<iframe", "<img", "<svg", "<object", "<embed", "<form",
+      "<link", "<style>", "document.", "window.", "eval(", "Function("
+  ];
+  const lowerDecoded = decoded.toLowerCase();
+  let safe = true;
+  for(let i=0; i < dangerousPatterns.length; i++){
+    if(lowerDecoded.includes(dangerousPatterns[i])){
+      safe = false;
+    }
+  }
+  return safe;
+}
+
+
 function eid(name){
   return document.getElementById(name);
 }
