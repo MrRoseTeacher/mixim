@@ -460,7 +460,6 @@ function altStyleModal(){
 }
 
 window.onload = function(){
-  decoded = "<script>";
   if (!isSafe(decoded)) {
     // Abort game loading
     eid("main").style.display = "none";
