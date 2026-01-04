@@ -150,6 +150,7 @@ eid("gen-mixim").onclick = function(){
     
     //populate the link box below
     const link = document.createElement("a");
+    link.innerHTML = "";
     link.innerHTML = fullURL;
     link.href = fullURL;
     link.target = "_blank";
