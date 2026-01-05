@@ -150,7 +150,7 @@ eid("gen-mixim").onclick = function(){
     
     //populate the link box below
     if(eid("mixim-link").querySelector('a')){
-      eid("mixim-link").querySelector('a').remove;
+      eid("mixim-link").querySelector('a').remove();
     }
     const link = document.createElement("a");
     link.innerHTML = fullURL;
