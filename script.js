@@ -149,8 +149,8 @@ eid("gen-mixim").onclick = function(){
     const fullURL = domain + "?data=" + query
     
     //populate the link box below
+    eid("mixim-link").innerHTML = "";
     const link = document.createElement("a");
-    link.innerHTML = "";
     link.innerHTML = fullURL;
     link.href = fullURL;
     link.target = "_blank";
