@@ -149,7 +149,7 @@ eid("gen-mixim").onclick = function(){
     const fullURL = domain + "?data=" + query
     
     //populate the link box below
-    eid("mixim-link").innerHTML = "";
+    eid("mixim-link").innerHTML = '<button id="copy-link"><span class="material-symbols-outlined">content_copy</span></button>';
     const link = document.createElement("a");
     link.innerHTML = fullURL;
     link.href = fullURL;
