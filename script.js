@@ -106,7 +106,6 @@ function builderOnLoad(){
   //run check for deleteIcons. Makes first button invisible at the beginning.
   displayDeleteRow();
   userGuideHeight = eid("user-guide").clientHeight;
-  console.log(userGuideHeight);
   eid("user-guide").style.height = 0;
 }
 
